@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prediction</title>
+    <!-- Aos animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- swiper slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+      <div class="container">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold text-brand"
+            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
+          /></a>
+          <button id="open-menu" class="lg:hidden text-gray-700">
+            <!-- Hamburger icon -->
+            <svg
+              class="w-9 h-9 bg-brand rounded-full p-1.5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+            <a
+              href="index.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Home</a
+            >
+            <a
+              href="about-us.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >About</a
+            >
+            <a
+              href="live-prediction.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Live Predictions</a
+            >
+            <a
+              href="pricing.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Pricing</a
+            >
+            <a
+              href="blog.html"
+              class="active text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Blog</a
+            >
+          </nav>
+          <div class="hidden lg:flex items-center gap-2.5">
+            <a
+              href="login.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Login</a
+            >
+            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+    <!-- Off‑canvas menu -->
+    <aside
+      id="canvas-menu"
+      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
+    >
+      <div
+        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
+      >
+        <a href="index.html" class="text-2xl font-bold text-brand"
+          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
+        /></a>
+        <button id="close-menu" class="text-white">✕</button>
+      </div>
+      <nav class="flex flex-col p-4 space-y-3">
+        <a
+          href="index.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Home</a
+        >
+        <a
+          href="about-us.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >About</a
+        >
+        <a
+          href="live-prediction.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Live Predictions</a
+        >
+        <a
+          href="pricing.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Pricing</a
+        >
+        <a
+          href="blog.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Blog</a
+        >
+        <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
+      </nav>
+    </aside>
+    <!-- Page Info Section Start -->
+    <section
+      class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18"
+    >
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-3"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h2 class="leading-tight">
+            Insights, Analysis &
+            <span class="text-gradient">Platform Updates</span>
+          </h2>
+          <p class="text-[18px]">
+            Learn how predictions are built, how the platform works, and how to
+            improve decision-making. Every article is written to educate,
+            clarify, and add long-term value.
+          </p>
+        </div>
+      </div>
+      <!-- effect -->
+      <div class="color-effect"></div>
+      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+        <img
+          src="assets/images/page-info-bg/info-thumbnail-4.jpg"
+          alt="image"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Page Info Section End -->
+    <!-- Blog Section Start -->
+    <section class="section-gap relative">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-160 md:mx-0 mx-auto md:text-start text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="200"
+        >
+          <h3>Explore How Our Platform Works</h3>
+          <p>
+            Deep dives into prediction methodology, system features, and
+            analytical workflows.
+          </p>
+        </div>
+        <div class="grid grid-cols-12 gap-5 inner-gap">
+          <div class="col-span-full lg:col-span-7 space-y-6">
+            <!-- item -->
+
+            <div
+              class="border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Popular</span
+                >
+                <span class="flex text-white">22 . Dec 2025</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Fantasy Football Today</h5>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic when an unknown printer took a
+                  galley of type and scrambled
+                </p>
+              </div>
+              <div class="inline-block">
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-white border border-white/30 rounded-full py-1.5 px-3 text-sm hover:bg-soft-gray/10"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-white group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- item -->
+
+            <div
+              class="border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+            >
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Popular</span
+                >
+                <span class="flex text-white">22 . Dec 2025</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Women's Champions League</h5>
+                <p>
+                  Contrary to popular belief, Lorem Ipsum is not simply random
+                  text. It has roots in a piece of classical Latin literature
+                  from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia.. when
+                  an unknown printer took a galley of type and scrambled
+                </p>
+              </div>
+              <div class="inline-block">
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-white border border-white/30 rounded-full py-1.5 px-3 text-sm hover:bg-soft-gray/10"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-white group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full lg:col-span-5">
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="600"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-1.png"
+                  alt="Blog thumbnail"
+                  class="w-full"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Champions League</h5>
+                <p>
+                  Our platform is powered by experienced sports analysts who
+                  believe success is built through discipline, not luck...
+                </p>
+              </div>
+              <div class="inline-block">
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-white border border-white/30 rounded-full py-1.5 px-3 text-sm hover:bg-soft-gray/10"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-white group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- filter btn -->
+        <div class="filter-container inner-gap">
+          <div
+            class="flex flex-wrap gap-3 mb-10 filter-group lg:justify-start justify-center"
+          >
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              ALL POST
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="analysis"
+              data-filter="all"
+              data-aos="fade-up"
+              data-aos-duration="800 "
+              data-aos-delay="100"
+            >
+              Analysis
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="platform_features"
+              data-aos="fade-up"
+              data-aos-duration="800 "
+              data-aos-delay="200"
+            >
+              Platform features
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="education"
+              data-aos="fade-up"
+              data-aos-duration="800 "
+              data-aos-delay="300"
+            >
+              education
+            </button>
+          </div>
+          <div
+            class="sm:grid-cols-2 lg:grid-cols-3 grid gap-4 mt-10 filter-container relative"
+          >
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="analysis"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-1.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Champions League</h5>
+                <p>
+                  Our platform is powered by experienced sports analysts who
+                  believe success is built through discipline, not luck...
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="platform_features"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-2.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Understanding Confidence Levels in Predictions</h5>
+                <p>
+                  Learn how confidence indicators are calculated and how they
+                  should be interpreted responsibly.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="platform_features"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-3.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Smart Risk Management for Prediction Users</h5>
+                <p>
+                  Practical guidance on managing exposure, expectations, and
+                  decision discipline when using predictions.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="education"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-4.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Prediction vs Guessing: What’s the Real Difference?</h5>
+                <p>
+                  Understanding why structured analysis and discipline
+                  outperform instinct-based decisions over time.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="education"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-5.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>
+                  Why Responsible Participation Matters in Sports Predictions
+                </h5>
+                <p>
+                  How informed decision-making and risk awareness protect users
+                  from unrealistic expectations.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="education"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-6.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Tracking Performance: Why Transparency Builds Trust</h5>
+                <p>
+                  How result history, accuracy tracking, and open reporting
+                  strengthen long-term confidence.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2 overflow-hidden"
+              data-category="education"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-7.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>What Past Performance Really Tells You</h5>
+                <p>
+                  Learning how to evaluate historical results without assuming
+                  guaranteed future outcomes.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+              data-category="education"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-8.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>How Plan-Based Access Keeps Predictions Structured</h5>
+                <p>
+                  Why tiered access ensures clarity, fairness, and controlled
+                  delivery of insights. A step-by-step overview of how
+                  predictions are created, delivered, and recorded.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="filter-item border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+              data-category="analysis"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-9.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>Why Premium Insights Are Gated</h5>
+                <p>
+                  Understanding the purpose of restricted access in maintaining
+                  quality and analytical focus.
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="flex justify-center mt-10">
+          <button class="primary-btn group">
+            Load More
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              class="svg-stroke-white group-hover:-rotate-60 duration-600"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 10H15.8337"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div> -->
+        <div class="mt-10">
+          <!-- common heading -->
+          <div
+            class="max-w-160 md:mx-0 mx-auto md:text-start text-center space-y-2"
+          >
+            <h3>Latest Articles & Updates</h3>
+            <p>
+              Stay up to date with the newest insights, performance breakdowns,
+              and and improvements.
+            </p>
+          </div>
+          <div class="mt-10 sm:grid-cols-2 lg:grid-cols-3 grid gap-4">
+            <!-- item -->
+            <div
+              class="border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-1.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Champions League</h5>
+                <p>
+                  Our platform is powered by experienced sports analysts who
+                  believe success is built through discipline, not luck...
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-2.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Champions League</h5>
+                <p>
+                  Our platform is powered by experienced sports analysts who
+                  believe success is built through discipline, not luck...
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="border border-[#1F2334] rounded-2xl p-6 bg-[#0E122380] space-y-5 hover-shadow-2"
+            >
+              <!-- blog thumbnail -->
+              <div>
+                <img
+                  src="assets/images/blogs/blog-thumbnail-8.png"
+                  alt="img"
+                  class="w-full rounded-lg"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="flex bg-gradient py-1 px-5 rounded-4xl text-white"
+                  >Sports</span
+                >
+                <span class="flex text-white">5 min read</span>
+              </div>
+              <div class="space-y-3">
+                <h5>UEFA Champions League</h5>
+                <p>
+                  Our platform is powered by experienced sports analysts who
+                  believe success is built through discipline, not luck...
+                </p>
+              </div>
+              <div>
+                <a
+                  href="blog-details.html"
+                  class="group flex items-center gap-2 text-[#7CA0F3] text-lg"
+                >
+                  Read more
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    class="svg-stroke-blue group-hover:-rotate-60 duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 10H15.8337"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-1/4 left-0 right-0 mx-auto absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-3/4 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- Cta Start -->
+    <section class="pt-10 md:pt-15 -mb-30">
+      <div class="container">
+        <div
+          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
+        >
+          <div
+            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
+          >
+            <div class="max-w-140">
+              <h3 class="md:text-start text-center">
+                Start getting smart sports predictions today
+              </h3>
+            </div>
+            <div class="inline-block">
+              <a href="#" class="primary-btn"
+                >Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="absolute top-0 left-0 h-full w-full">
+            <img
+              src="assets/images/bg/bg-1.jpg"
+              alt="img"
+              class="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cta End -->
+    <!-- Footer Start -->
+    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+      <div class="container relative z-10">
+        <div class="max-w-135 mx-auto text-center">
+          <a href="index.html"
+            ><img
+              src="assets/images/logo.png"
+              class="max-w-50 mx-auto"
+              alt="logo"
+          /></a>
+          <p class="mt-3">
+            Precision Analytics for Sports Enthusiasts. Connect with top
+            predictors for real-time insights.
+          </p>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
+          >
+            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Predictions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >How it works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/twitter.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/telegram.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/linkedin.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
+        >
+          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+          <ul
+            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Refund Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- disclaimer -->
+        <div
+          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
+        >
+          <p class="text-sm text-soft-gray/50">
+            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+            are provided for informational purposes only. Outcomes are never
+            guaranteed, and past performance does not guarantee future results.
+          </p>
+        </div>
+      </div>
+      <div class="h-full w-full top-0 left-0 absolute -z-10">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full h-full"
+        />
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <script>
+      const openBtn = document.getElementById("open-menu");
+      const closeBtn = document.getElementById("close-menu");
+      const canvasMenu = document.getElementById("canvas-menu");
+      const overlay = document.getElementById("overlay");
+      openBtn.addEventListener("click", () => {
+        canvasMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      closeBtn.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+
+      overlay.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+    </script>
+    <!-- filter js -->
+    <script>
+      document.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("filter-btn")) return;
+
+        const btn = e.target;
+        const container = btn.closest(".filter-container");
+        const filterButtons = container.querySelectorAll(".filter-btn");
+        const filterItems = container.querySelectorAll(".filter-item");
+
+        // active button
+        filterButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.dataset.filter;
+
+        filterItems.forEach((item) => {
+          const categories = item.dataset.category.split(" ");
+          if (filter === "all" || categories.includes(filter)) {
+            item.classList.remove("filter-hide");
+            item.classList.add("filter-show");
+          } else {
+            item.classList.add("filter-hide");
+            item.classList.remove("filter-show");
+          }
+        });
+      });
+    </script>
+    <!-- Swiper slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- user review slider js -->
+    <script>
+      const userReviewSlider = new Swiper(".user-review-slider", {
+        slidesPerView: 3,
+        centeredSlides: true,
+        loop: true,
+        speed: 1000,
+        spaceBetween: 20,
+        autoplay: false,
+
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        // },
+        navigation: {
+          nextEl: "#swiper-slider-button-next",
+          prevEl: "#swiper-slider-button-prev",
+        },
+        grabCursor: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+
+          768: {
+            slidesPerView: 2,
+          },
+        },
+      });
+    </script>
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        mirror: true,
+        once: false,
+        offset: 100,
+        anchorPlacement: "top-bottom",
+        disableMutationObserver: false,
+      });
+    </script>
+  </body>
+</html>

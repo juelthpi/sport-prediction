@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prediction</title>
+    <!-- Aos animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- swiper slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md"
+    >
+      <div class="text-center">
+        <!-- Glowing Spinner -->
+        <div class="relative w-22 h-22 mx-auto mb-6">
+          <!-- Outer Pulse Ring -->
+          <div
+            class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"
+          ></div>
+          <!-- Main Spinning Ring -->
+          <div
+            class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin"
+          ></div>
+          <!-- Inner Glow -->
+          <div
+            class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse"
+          ></div>
+          <!-- Center Core -->
+          <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
+        </div>
+
+        <!-- Text with Dot Animation -->
+        <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
+        <div class="flex justify-center space-x-2">
+          <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"
+          ></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"
+          ></div>
+        </div>
+        <p class="text-gray-400 text-sm mt-4">
+          Analyzing matches & generating winning tips...
+        </p>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+      <div class="container">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold text-brand"
+            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
+          /></a>
+          <button id="open-menu" class="lg:hidden text-gray-700">
+            <!-- Hamburger icon -->
+            <svg
+              class="w-9 h-9 bg-brand rounded-full p-1.5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+            <a
+              href="index.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Home</a
+            >
+            <a
+              href="about-us.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >About</a
+            >
+            <a
+              href="live-prediction.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Live Predictions</a
+            >
+            <a
+              href="pricing.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Pricing</a
+            >
+            <a
+              href="blog.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Blog</a
+            >
+          </nav>
+          <div class="hidden lg:flex items-center gap-2.5">
+            <a
+              href="login.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Login</a
+            >
+            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+    <!-- Off‑canvas menu -->
+    <aside
+      id="canvas-menu"
+      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
+    >
+      <div
+        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
+      >
+        <a href="index.html" class="text-2xl font-bold text-brand"
+          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
+        /></a>
+        <button id="close-menu" class="text-white">✕</button>
+      </div>
+      <nav class="flex flex-col p-4 space-y-3">
+        <a
+          href="index.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Home</a
+        >
+        <a
+          href="about-us.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >About</a
+        >
+        <a
+          href="live-prediction.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Live Predictions</a
+        >
+        <a
+          href="pricing.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Pricing</a
+        >
+        <a
+          href="blog.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Blog</a
+        >
+        <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
+      </nav>
+    </aside>
+    <!-- Page Info Section Start -->
+    <section
+      class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18"
+    >
+      <div class="container">
+        <div
+          class="max-w-150 mx-auto text-center space-y-3"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h2 class="leading-tight">
+            How Our Prediction
+            <span class="text-gradient">System Works</span>
+          </h2>
+          <p class="text-[18px]">
+            A transparent system designed for clarity, consistency, and trust.
+            From expert analysis to instant Telegram delivery.
+          </p>
+        </div>
+      </div>
+      <!-- effect -->
+      <div class="color-effect"></div>
+      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+        <img
+          src="assets/images/page-info-bg/info-thumbnail-1.jpg"
+          alt="image"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Page Info Section End -->
+    <section class="section-gap relative">
+      <div class="container">
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="300"
+        >
+          <h3>From Analysis to Action</h3>
+          <p>
+            A transparent look at how every prediction is generated, processed,
+            and delivered to your device.
+          </p>
+        </div>
+        <div class="mt-15 md:mt-40">
+          <div class="journey-inner-container">
+            <div class="timeline gap-1 mt-5">
+              <!-- item -->
+              <div
+                class="timeline-item"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="200"
+              >
+                <div class="timeline-content mt-4 space-y-3">
+                  <span class="text-gradient inline-block">Step 1</span>
+                  <h6>Data-Driven Sports Analysis</h6>
+
+                  <p>
+                    Our analysts evaluate team form, player performance,
+                    historical data, and match context to produce disciplined,
+                    structured predictions.
+                  </p>
+                </div>
+                <div class="dot-cover">
+                  <span class="dot"></span>
+                </div>
+                <span class="rec"></span>
+              </div>
+              <!-- item -->
+              <div
+                class="timeline-item"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="400"
+              >
+                <div class="timeline-content mt-4 space-y-3">
+                  <span class="text-gradient inline-block">Step 2</span>
+                  <h6>Clear, Tier-Based Signals</h6>
+
+                  <p>
+                    Each prediction is organized by sport, match, confidence
+                    level, and access tier to ensure clarity and consistency
+                    across the platform.
+                  </p>
+                </div>
+                <div class="dot-cover">
+                  <span class="dot"></span>
+                </div>
+                <span class="rec"></span>
+              </div>
+              <!-- item -->
+              <div
+                class="timeline-item"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="600"
+              >
+                <div class="timeline-content mt-4 space-y-3">
+                  <span class="text-gradient inline-block">Step 3</span>
+                  <h6>Controlled & Timed Release</h6>
+
+                  <p>
+                    Predictions are published instantly or scheduled through the
+                    dashboard, ensuring accurate timing and fair access for each
+                    plan.
+                  </p>
+                </div>
+                <div class="dot-cover">
+                  <span class="dot"></span>
+                </div>
+                <span class="rec"></span>
+              </div>
+              <!-- item -->
+              <div class="timeline-item">
+                <div class="timeline-content mt-4 space-y-3">
+                  <span class="text-gradient inline-block">Step 4</span>
+                  <h6>Real-Time Signal Alerts</h6>
+                  <p>
+                    Signals are delivered immediately to the correct Telegram
+                    channels, so users never miss an update.
+                  </p>
+                </div>
+                <div class="dot-cover">
+                  <span class="dot"></span>
+                </div>
+                <span class="rec"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- dot shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-40 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-80 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[200px] opacity-40 top-45 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-70 left-10 absolute from-secondary to-secondary bg-linear-to-r"
+      ></div>
+
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 right-10 absolute from-secondary to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Sharing Feature Start -->
+    <section class="relative section-gap">
+      <div class="container">
+        <div
+          class="grid grid-cols-12 items-center space-y-10 lg:space-y-0 lg:gap-15"
+        >
+          <div
+            class="col-span-full lg:col-span-8 space-y-4 text-center lg:text-start"
+          >
+            <div class="inline-block">
+              <div
+                class="flex items-center gap-2 border border-brand/50 rounded-3xl py-1.5 px-3 bg-brand/10 backdrop-blur-xs"
+              >
+                <span class="text-brand font-medium">Platform</span>
+              </div>
+            </div>
+            <!-- common heading -->
+            <div class="space-y-2">
+              <h3>
+                Why We Use
+                <span class="text-gradient">Telegram</span>
+              </h3>
+              <p>
+                Telegram offers the fastest, most reliable delivery method for
+                time-sensitive sports data. No need to log in to a website
+                repeatedly.
+              </p>
+            </div>
+            <div class="space-y-3">
+              <!-- item -->
+              <div
+                class="flex items-center gap-4 lg:justify-start justify-center"
+              >
+                <div
+                  class="h-9 w-9 rounded-full p-1 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/telegram.png"
+                    alt="icon"
+                    class="max-w-3.5"
+                  />
+                </div>
+                <div>
+                  <h6 class="text-[#7CA0F3] text-lg">
+                    Instant Telegram alerts
+                  </h6>
+                </div>
+              </div>
+              <!-- item -->
+              <div
+                class="flex items-center gap-4 lg:justify-start justify-center"
+              >
+                <div
+                  class="h-9 w-9 rounded-full p-1 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/one-time-setup.png"
+                    alt="icon"
+                    class="max-w-3.5"
+                  />
+                </div>
+                <div>
+                  <h6 class="text-[#7CA0F3] text-lg">One-Time Setup</h6>
+                </div>
+              </div>
+              <!-- item -->
+              <div
+                class="flex items-center gap-4 lg:justify-start justify-center"
+              >
+                <div
+                  class="h-9 w-9 rounded-full p-1 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/verifyed.png"
+                    alt="icon"
+                    class="max-w-3.5"
+                  />
+                </div>
+                <div>
+                  <h6 class="text-[#7CA0F3] text-lg">Smart Access Control</h6>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="space-y-2">
+                <p>
+                  As plans scale, users gain access to higher success rate
+                  signals, more premium predictions, broader market coverage,
+                  and faster delivery. All paid plans are protected by a 100%
+                  money-back guarantee, ensuring trust, fairness, and confidence
+                  in every upgrade.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-12 md:col-span-6 md:col-start-4 lg:col-span-4 lg:col-start-auto"
+          >
+            <img
+              src="assets/images/thumbnails/telegram-send.png"
+              alt="img"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-25 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <!-- Sharing Feature End -->
+    <!-- Earn Sharing Platform Start -->
+    <section class="relative section-gap">
+      <div class="container">
+        <!-- common heading -->
+        <div class="max-w-150 mx-auto text-center space-y-2">
+          <div class="inline-block mb-4">
+            <div
+              class="flex items-center gap-2 border border-brand/50 rounded-3xl py-1.5 px-3 bg-brand/10 backdrop-blur-xs"
+            >
+              <span class="text-brand font-medium">Affiliate Program</span>
+            </div>
+          </div>
+          <h3>Earn by Sharing the Platform</h3>
+          <p>
+            Turn your network into revenue. Our automated system tracks every
+            referral and pays out commissions directly to your wallet in crypto
+            or fiat.
+          </p>
+        </div>
+        <!-- step -->
+        <div
+          class="flex sm:justify-between inner-gap flex-wrap sm:flex-nowrap justify-center space-y-6"
+        >
+          <!-- item -->
+          <div class="space-y-4 text-center px-6">
+            <div
+              class="flex items-center justify-center p-2 rounded-xl text-white border border-blue-600 h-12 w-12 text-2xl mx-auto bg-black"
+            >
+              <img
+                src="assets/images/icons/ic_round-share.png"
+                alt="icon"
+                class="max-w-7"
+              />
+            </div>
+            <div class="space-y-3">
+              <h6 class="text-light-blue">1. Share Your Link</h6>
+              <p>
+                Get a unique tracking link instantly when you join our partner
+                dashboard.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="space-y-4 text-center px-6 relative sm:after:content-[''] sm:after:absolute after:top-5 sm:after:right-6/12 sm:after:bg-linear-to-r sm:after:from-brand/70 sm:after:to-secondary sm:after:w-[calc(100%+20px)] sm:after:xl:w-[calc(100%+50px)] sm:after:h-0.5 sm:after:-z-10 sm:before:content-[''] sm:before:absolute sm:before:top-5 sm:before:left-5/12 sm:before:bg-linear-to-r sm:before:from-brand/70 sm:before:to-green-600 sm:before:xl:w-[calc(100%+10px)] sm:before:w-[calc(100%+20px)] sm:before:h-0.5 before:-z-10"
+          >
+            <div
+              class="flex items-center justify-center p-2 rounded-xl text-white border border-secondary h-12 w-12 text-2xl mx-auto bg-black"
+            >
+              <img
+                src="assets/images/icons/group-add-rounded.png"
+                alt="icon"
+                class="max-w-7"
+              />
+            </div>
+            <div class="space-y-3">
+              <h6 class="text-secondary">2. They Subscribe</h6>
+              <p>
+                When users upgrade to Premium or VIP using your secure link.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div class="space-y-4 text-center px-6">
+            <div
+              class="flex items-center justify-center p-2 rounded-xl text-white border border-green-500 h-12 w-12 text-2xl mx-auto bg-black"
+            >
+              <img
+                src="assets/images/icons/round-payments.png"
+                alt="icon"
+                class="max-w-7"
+              />
+            </div>
+            <div class="space-y-3">
+              <h6 class="text-green-500">3. You Get Paid</h6>
+              <p>Earn up to 30% recurring commission on every payment.</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-5 mt-8">
+          <div
+            class="col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5"
+          >
+            <div
+              class="h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2"
+            >
+              <img src="assets/images/icons/discipline.png" alt="img" />
+            </div>
+            <h5>Built on Discipline, Not Guarantees</h5>
+            <p>
+              We don't promise 100% win rates-nobody can. We promise analytical
+              rigor, transparent tracking, and responsible insights. Our goal is
+              long-term consistency, not get-rich-quick schemes.
+            </p>
+          </div>
+          <div
+            class="col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5"
+          >
+            <div
+              class="h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2"
+            >
+              <img src="assets/images/icons/secured-filled.png" alt="img" />
+            </div>
+            <h5>Your Data, Protected</h5>
+            <p>
+              We prioritize your privacy. Payments are processed via encrypted
+              gateways, and your Telegram data is never shared. We only use your
+              contact info to deliver the service you paid for.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Earn Sharing Platform End -->
+    <!-- Cta Start -->
+    <section class="pt-10 md:pt-15 -mb-30">
+      <div class="container">
+        <div
+          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
+        >
+          <div
+            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
+          >
+            <div class="max-w-140">
+              <h3 class="md:text-start text-center">
+                Start getting smart sports predictions today
+              </h3>
+            </div>
+            <div class="inline-block">
+              <a href="#" class="primary-btn"
+                >Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="absolute top-0 left-0 h-full w-full">
+            <img
+              src="assets/images/bg/bg-1.jpg"
+              alt="img"
+              class="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cta End -->
+    <!-- Footer Start -->
+    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+      <div class="container relative z-10">
+        <div class="max-w-135 mx-auto text-center">
+          <a href="index.html"
+            ><img
+              src="assets/images/logo.png"
+              class="max-w-50 mx-auto"
+              alt="logo"
+          /></a>
+          <p class="mt-3">
+            Precision Analytics for Sports Enthusiasts. Connect with top
+            predictors for real-time insights.
+          </p>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
+          >
+            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Predictions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >How it works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/twitter.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/telegram.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/linkedin.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
+        >
+          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+          <ul
+            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Refund Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- disclaimer -->
+        <div
+          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
+        >
+          <p class="text-sm text-soft-gray/50">
+            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+            are provided for informational purposes only. Outcomes are never
+            guaranteed, and past performance does not guarantee future results.
+          </p>
+        </div>
+      </div>
+      <div class="h-full w-full top-0 left-0 absolute -z-10">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full h-full"
+        />
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <script>
+      const openBtn = document.getElementById("open-menu");
+      const closeBtn = document.getElementById("close-menu");
+      const canvasMenu = document.getElementById("canvas-menu");
+      const overlay = document.getElementById("overlay");
+      openBtn.addEventListener("click", () => {
+        canvasMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      closeBtn.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+
+      overlay.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+    </script>
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        mirror: true,
+        once: false,
+        offset: 100,
+        anchorPlacement: "top-bottom",
+        disableMutationObserver: false,
+      });
+    </script>
+    <!-- preloader js -->
+    <script>
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        preloader.classList.add("opacity-0");
+        setTimeout(() => {
+          preloader.classList.add("hidden");
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

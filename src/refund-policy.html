@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prediction</title>
+    <!-- Aos animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- swiper slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md"
+    >
+      <div class="text-center">
+        <!-- Glowing Spinner -->
+        <div class="relative w-22 h-22 mx-auto mb-6">
+          <!-- Outer Pulse Ring -->
+          <div
+            class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"
+          ></div>
+          <!-- Main Spinning Ring -->
+          <div
+            class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin"
+          ></div>
+          <!-- Inner Glow -->
+          <div
+            class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse"
+          ></div>
+          <!-- Center Core -->
+          <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
+        </div>
+
+        <!-- Text with Dot Animation -->
+        <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
+        <div class="flex justify-center space-x-2">
+          <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"
+          ></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"
+          ></div>
+        </div>
+        <p class="text-gray-400 text-sm mt-4">
+          Analyzing matches & generating winning tips...
+        </p>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+      <div class="container">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold text-brand"
+            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
+          /></a>
+          <button id="open-menu" class="lg:hidden text-gray-700">
+            <!-- Hamburger icon -->
+            <svg
+              class="w-9 h-9 bg-brand rounded-full p-1.5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+            <a
+              href="index.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Home</a
+            >
+            <a
+              href="about-us.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >About</a
+            >
+            <a
+              href="live-prediction.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Live Predictions</a
+            >
+            <a
+              href="pricing.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Pricing</a
+            >
+            <a
+              href="blog.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Blog</a
+            >
+          </nav>
+          <div class="hidden lg:flex items-center gap-2.5">
+            <a
+              href="login.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Login</a
+            >
+            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+    <!-- Off‑canvas menu -->
+    <aside
+      id="canvas-menu"
+      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
+    >
+      <div
+        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
+      >
+        <a href="index.html" class="text-2xl font-bold text-brand"
+          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
+        /></a>
+        <button id="close-menu" class="text-white">✕</button>
+      </div>
+      <nav class="flex flex-col p-4 space-y-3">
+        <a
+          href="index.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Home</a
+        >
+        <a
+          href="about-us.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >About</a
+        >
+        <a
+          href="live-prediction.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Live Predictions</a
+        >
+        <a
+          href="pricing.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Pricing</a
+        >
+        <a
+          href="blog.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Blog</a
+        >
+        <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
+      </nav>
+    </aside>
+    <!-- Page Info Section Start -->
+    <section
+      class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18"
+    >
+      <div class="container">
+        <div
+          class="max-w-150 mx-auto text-center space-y-3"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h2 class="leading-tight">
+            Refund
+            <span class="text-gradient">Policy</span>
+          </h2>
+          <p class="text-[18px]">
+            Clear refund rules designed to protect users and ensure fairness.
+            Transparency and trust are built into every subscription.
+          </p>
+        </div>
+      </div>
+      <!-- effect -->
+      <div class="color-effect"></div>
+      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+        <img
+          src="assets/images/page-info-bg/info-thumbnail-1.jpg"
+          alt="image"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Page Info Section End -->
+    <section class="section-gap relative">
+      <div class="container">
+        <div>
+          <div class="relative">
+            <div
+              class="border border-white/10 bg-white/5 rounded-xl py-20 relative after:content-[''] after:absolute after:top-5 after:right-2 after:bg-secondary/70 after:w-25 after:h-25 after:blur-3xl overflow-hidden shadow-2xl"
+            >
+              <div class="space-y-5 text-center max-w-150 mx-auto">
+                <img
+                  src="assets/images/icons/money-return.png"
+                  alt="icon"
+                  class="h-12 w-12 mx-auto"
+                />
+                <h5>Our Money-Back Commitment</h5>
+
+                <p>
+                  We offer a
+                  <span class="text-gradient">20-day money-back guarantee</span
+                  >. If you are not satisfied with the accuracy or fairness of
+                  our predictions service, we will refund your current month's
+                  subscription, no hard feelings.
+                </p>
+              </div>
+            </div>
+            <div class="absolute left-0 bottom-0 -z-10">
+              <img src="assets/images/shape/line-shape-left.png" alt="img" />
+            </div>
+          </div>
+          <!-- step -->
+          <div
+            class="flex sm:justify-between inner-gap flex-wrap sm:flex-nowrap justify-center space-y-6"
+          >
+            <!-- item -->
+            <div class="space-y-4 text-center">
+              <div
+                class="flex items-center justify-center p-2 rounded-full text-white border-2 border-blue-600 h-12 w-12 text-2xl mx-auto bg-black"
+                data-aos="zoom-in"
+                data-aos-duration="400"
+              >
+                1
+              </div>
+              <div class="space-y-3">
+                <h6 class="text-light-blue">Submit Request</h6>
+                <p>Request a refund via your dashboard or support chat.</p>
+              </div>
+            </div>
+            <!-- item -->
+            <div
+              class="space-y-4 text-center relative sm:after:content-[''] sm:after:absolute after:top-5 sm:after:right-6/12 sm:after:bg-linear-to-r sm:after:from-brand/70 sm:after:to-secondary sm:after:w-[calc(100%+20px)] sm:after:xl:w-[calc(100%+50px)] sm:after:h-0.5 sm:after:-z-10 sm:before:content-[''] sm:before:absolute sm:before:top-5 sm:before:left-6/12 sm:before:bg-linear-to-r sm:before:from-brand/70 sm:before:to-green-600 sm:before:xl:w-[calc(100%+50px)] sm:before:w-[calc(100%+20px)] sm:before:h-0.5 before:-z-10"
+            >
+              <div
+                class="flex items-center justify-center p-2 rounded-full text-white border-2 border-secondary h-12 w-12 text-2xl mx-auto bg-black"
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-delay="300"
+              >
+                2
+              </div>
+              <div class="space-y-3">
+                <h6 class="text-secondary">Expert Review</h6>
+                <p>Our team verifies your eligibility within 24-48 hours.</p>
+              </div>
+            </div>
+            <!-- item -->
+            <div class="space-y-4 text-center">
+              <div
+                class="flex items-center justify-center p-2 rounded-full text-white border-2 border-green-500 h-12 w-12 text-2xl mx-auto bg-black"
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-delay="600"
+              >
+                3
+              </div>
+              <div class="space-y-3">
+                <h6 class="text-green-500">Money Returned</h6>
+                <p>Funds returned to original payment method in 5-7 days.</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6 mt-10">
+            <!-- item -->
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="min-h-12 min-w-12 rounded-xl bg-[#1729684D] flex items-center justify-center border border-blue-900"
+                >
+                  <img
+                    src="assets/images/icons/check-circle.png"
+                    alt="img"
+                    class="w-7 h-7"
+                  />
+                </div>
+                <h5 class="font-medium">
+                  Eligibility for Refunds Eligibility for Refunds
+                </h5>
+              </div>
+              <p>
+                To ensure our platform remains fair for all users, refunds are
+                generally available to new subscribers who feel our service did
+                not meet the standards promised. Eligibility is determined based
+                on the following:
+              </p>
+              <ul class="space-y-1 list-disc ml-6">
+                <li class="text-white/90">
+                  The request is made within 20 days of the initial purchase.
+                </li>
+                <li class="text-white/90">
+                  The account has not violated our Terms of Service (e.g.,
+                  account sharing).
+                </li>
+                <li class="text-white/90">
+                  The user has not claimed a refund from SportsPredict in the
+                  past 12 months.
+                </li>
+              </ul>
+            </div>
+            <!-- item -->
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="min-h-12 min-w-12 rounded-xl bg-[#2C192B4D] flex items-center justify-center border border-[#2C192B]"
+                >
+                  <img
+                    src="assets/images/icons/close-check.png"
+                    alt="img"
+                    class="w-7 h-7"
+                  />
+                </div>
+                <h5 class="font-medium">Non-Refundable Situations</h5>
+              </div>
+              <p>
+                While we strive to be generous, certain situations are not
+                covered by our money-back guarantee:
+              </p>
+              <ul class="space-y-1 list-disc ml-6">
+                <li class="text-white/90">
+                  Partial Months: We do not offer pro-rated refunds for
+                  cancellations made in the middle of a billing cycle after the
+                  20-day window.
+                </li>
+                <li class="text-white/90">
+                  Betting Losses: SportsPredict provides data and analysis. We
+                  are not responsible for financial losses incurred from betting
+                  activities. Refunds strictly cover the subscription fee.
+                </li>
+                <li class="text-white/90">
+                  Abuse: Repeated refund requests or "churning" accounts will be
+                  denied.
+                </li>
+              </ul>
+            </div>
+            <!-- item -->
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="min-h-12 min-w-12 rounded-xl bg-[#937AFF0D] flex items-center justify-center border border-[#937AFF33]"
+                >
+                  <img
+                    src="assets/images/icons/subscription-cancellations.png"
+                    alt="img"
+                    class="w-7 h-7"
+                  />
+                </div>
+                <h5 class="font-medium">Subscription Cancellations</h5>
+              </div>
+              <p>
+                You may cancel your subscription at any time directly from your
+                dashboard. Once cancelled:
+              </p>
+              <ul class="space-y-1 list-disc ml-6">
+                <li class="text-white/90">
+                  Partial Months: We do not offer pro-rated refunds for
+                  cancellations made in the middle of a billing cycle after the
+                  20-day window.
+                </li>
+                <li class="text-white/90">
+                  Betting Losses: SportsPredict provides data and analysis. We
+                  are not responsible for financial losses incurred from betting
+                  activities. Refunds strictly cover the subscription fee.
+                </li>
+                <li class="text-white/90">
+                  Abuse: Repeated refund requests or "churning" accounts will be
+                  denied.
+                </li>
+              </ul>
+              <div class="bg-white/6 p-5 rounded-xl border-l border-brand">
+                <p class="text-white/60">
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                  The point of using Lorem Ipsum is that it has a more-or-less
+                  normal distribution of letters, as opposed to using 'Content
+                  here, content here', making it look like readable English.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- circle shape  -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-60 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-70 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-2/3 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+    </section>
+
+    <!-- Cta Start -->
+    <section class="pt-10 md:pt-15 -mb-30">
+      <div class="container">
+        <div
+          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
+        >
+          <div
+            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
+          >
+            <div class="max-w-140">
+              <h3 class="md:text-start text-center">
+                Start getting smart sports predictions today
+              </h3>
+            </div>
+            <div class="inline-block">
+              <a href="#" class="primary-btn"
+                >Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="absolute top-0 left-0 h-full w-full">
+            <img
+              src="assets/images/bg/bg-1.jpg"
+              alt="img"
+              class="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cta End -->
+    <!-- Footer Start -->
+    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+      <div class="container relative z-10">
+        <div class="max-w-135 mx-auto text-center">
+          <a href="index.html"
+            ><img
+              src="assets/images/logo.png"
+              class="max-w-50 mx-auto"
+              alt="logo"
+          /></a>
+          <p class="mt-3">
+            Precision Analytics for Sports Enthusiasts. Connect with top
+            predictors for real-time insights.
+          </p>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
+          >
+            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Predictions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >How it works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/twitter.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/telegram.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/linkedin.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
+        >
+          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+          <ul
+            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Refund Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- disclaimer -->
+        <div
+          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
+        >
+          <p class="text-sm text-soft-gray/50">
+            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+            are provided for informational purposes only. Outcomes are never
+            guaranteed, and past performance does not guarantee future results.
+          </p>
+        </div>
+      </div>
+      <div class="h-full w-full top-0 left-0 absolute -z-10">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full h-full"
+        />
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <script>
+      const openBtn = document.getElementById("open-menu");
+      const closeBtn = document.getElementById("close-menu");
+      const canvasMenu = document.getElementById("canvas-menu");
+      const overlay = document.getElementById("overlay");
+      openBtn.addEventListener("click", () => {
+        canvasMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      closeBtn.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+
+      overlay.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+    </script>
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        mirror: true,
+        once: false,
+        offset: 100,
+        anchorPlacement: "top-bottom",
+        disableMutationObserver: false,
+      });
+    </script>
+    <!-- preloader js -->
+    <script>
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        preloader.classList.add("opacity-0");
+        setTimeout(() => {
+          preloader.classList.add("hidden");
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

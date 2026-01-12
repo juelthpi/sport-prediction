@@ -1,0 +1,3934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prediction</title>
+    <!-- swiper slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- Aos animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md"
+    >
+      <div class="text-center">
+        <!-- Glowing Spinner -->
+        <div class="relative w-22 h-22 mx-auto mb-6">
+          <!-- Outer Pulse Ring -->
+          <div
+            class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"
+          ></div>
+          <!-- Main Spinning Ring -->
+          <div
+            class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin"
+          ></div>
+          <!-- Inner Glow -->
+          <div
+            class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse"
+          ></div>
+          <!-- Center Core -->
+          <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
+        </div>
+
+        <!-- Text with Dot Animation -->
+        <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
+        <div class="flex justify-center space-x-2">
+          <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"
+          ></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"
+          ></div>
+        </div>
+        <p class="text-gray-400 text-sm mt-4">
+          Analyzing matches & generating winning tips...
+        </p>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+      <div class="container">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold text-brand"
+            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
+          /></a>
+          <button id="open-menu" class="lg:hidden text-gray-700">
+            <!-- Hamburger icon -->
+            <svg
+              class="w-9 h-9 bg-brand rounded-full p-1.5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+            <a
+              href="index.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Home</a
+            >
+            <a
+              href="about-us.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >About</a
+            >
+            <a
+              href="live-prediction.html"
+              class="active text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Live Predictions</a
+            >
+            <a
+              href="pricing.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Pricing</a
+            >
+            <a
+              href="blog.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Blog</a
+            >
+          </nav>
+          <div class="hidden lg:flex items-center gap-2.5">
+            <a
+              href="login.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Login</a
+            >
+            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+    <!-- Off‑canvas menu -->
+    <aside
+      id="canvas-menu"
+      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
+    >
+      <div
+        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
+      >
+        <a href="index.html" class="text-2xl font-bold text-brand"
+          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
+        /></a>
+        <button id="close-menu" class="text-white">✕</button>
+      </div>
+      <nav class="flex flex-col p-4 space-y-3">
+        <a
+          href="index.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Home</a
+        >
+        <a
+          href="about-us.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >About</a
+        >
+        <a
+          href="live-prediction.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Live Predictions</a
+        >
+        <a
+          href="pricing.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Pricing</a
+        >
+        <a
+          href="blog.html"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Blog</a
+        >
+        <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
+      </nav>
+    </aside>
+    <!-- Page Info Section Start -->
+    <section
+      class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18"
+    >
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-3"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <div class="inline-block">
+            <div
+              class="flex items-center gap-2 border border-soft-red/30 rounded-3xl py-1.5 px-3 bg-soft-red/10 backdrop-blur-xs"
+            >
+              <img src="assets/images/icons/live.png" alt="icon" />
+              <span class="text-soft-red font-medium">Live Feed Active</span>
+            </div>
+          </div>
+          <h2 class="leading-tight">
+            Live Sports Predictions, Updated in
+            <span
+              class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
+              >Real Time</span
+            >
+          </h2>
+          <p class="text-[18px]">
+            Access today’s most focused sports predictions powered by structured
+            analysis.
+          </p>
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-4 py-2 inline-block mx-auto backdrop-blur-xs"
+          >
+            <ul
+              class="flex items-center gap-x-6 gap-y-1 justify-center flex-wrap"
+            >
+              <li
+                class="font-medium text-white/60 duration-700 flex items-center gap-2"
+              >
+                <img
+                  src="assets/images/icons/lock-3.png"
+                  alt="img"
+                  class="w-4"
+                />
+                Free users see limited insights
+              </li>
+              <li
+                class="font-medium text-white/80 duration-700 flex items-center gap-2"
+              >
+                <span class="h-1.5 w-1.5 bg-brand rounded-full"></span>
+                Premium unlocks full prediction details
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+        <img
+          src="assets/images/page-info-bg/info-thumbnail-1.jpg"
+          alt="image"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- effect -->
+      <div class="color-effect"></div>
+    </section>
+    <!-- Page Info Section End -->
+    <!-- Prediction Section Start -->
+    <section
+      class="section-gap bg-[#0C1021] border-t border-[#1F2334] border-b relative"
+    >
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="300"
+        >
+          <h3>Today’s Focused Predictions</h3>
+          <p>
+            Key details are previewed-full insights unlock with a premium plan.
+            Hand-picked matches with the strongest data signals for today.
+          </p>
+        </div>
+        <!-- prediction area -->
+        <div class="inner-gap relative z-10 filter-container">
+          <div class="flex flex-wrap gap-3 mb-10 filter-group justify-center">
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="300"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/dashboard.png"
+                alt="icon"
+                class="max-w-5.5"
+              />ALL
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="football"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="400"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/football.png"
+                alt="icon"
+                class="max-w-5.5"
+              />
+              FOOTBALL
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="cricket"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="500"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/cricket.png"
+                alt="icon"
+                class="max-w-5.5"
+              />CRICKET
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="600"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/tennis.png"
+                alt="icon"
+                class="max-w-5.5"
+              />TENNIS
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="700"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/nfl.png"
+                alt="icon"
+                class="max-w-5.5"
+              />nfl
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="800"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/badminton.png"
+                alt="icon"
+                class="max-w-5.5"
+              />badminton
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 filter-container relative"
+          >
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="cricket"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/cricket.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">cricket</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <!-- card body -->
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+                <!-- lock screen -->
+                <div
+                  class="absolute top-23 left-0 h-[70%] w-full backdrop-blur-sm space-y-3 text-center px-6 py-2"
+                >
+                  <div
+                    class="h-25 w-25 mx-auto p-6 rounded-full flex items-center justify-center bg-[#1F2334] border border-soft-red/40"
+                  >
+                    <img
+                      src="assets/images/icons/lock-2.png"
+                      alt="icon"
+                      class="w-full"
+                    />
+                  </div>
+                  <p class="uppercase font-normal text-sm">Upgrade to unlock</p>
+                  <div
+                    class="from-brand to-secondary bg-linear-to-r p-px rounded-full"
+                  >
+                    <a href="#" class="secondary-btn group">UPGRADE NOW </a>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="tennis"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/tennis.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">tennis</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <!-- card body -->
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+                <!-- lock screen -->
+                <div
+                  class="absolute top-23 left-0 h-[70%] w-full backdrop-blur-sm space-y-3 text-center px-6 py-2"
+                >
+                  <div
+                    class="h-25 w-25 mx-auto p-6 rounded-full flex items-center justify-center bg-[#1F2334] border border-soft-red/40"
+                  >
+                    <img
+                      src="assets/images/icons/lock-2.png"
+                      alt="icon"
+                      class="w-full"
+                    />
+                  </div>
+                  <p class="uppercase font-normal text-sm">Upgrade to unlock</p>
+                  <div
+                    class="from-brand to-secondary bg-linear-to-r p-px rounded-full"
+                  >
+                    <a href="#" class="secondary-btn group">UPGRADE NOW </a>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center flex justify-center mt-10">
+          <div class="from-brand to-secondary bg-linear-to-r p-px rounded-full">
+            <a href="#" class="secondary-btn group"
+              >Unlock Premium Predictions
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 10H15.8337"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-20 max-h-20 h-full w-full blur-[50px] opacity-90 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+    </section>
+    <!-- Prediction Section End -->
+    <!-- Previous Prediction Result Section Start -->
+    <section class="section-gap bg-[#0C1021] relative">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Previous Predictions & Results</h3>
+          <p>
+            Explore past predictions to understand our analytical consistency.
+            All outcomes are displayed openly for complete transparency.
+          </p>
+        </div>
+
+        <div class="inner-gap">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
+            <!-- Heading -->
+            <div
+              class="hidden md:block col-span-full sticky top-18 backdrop-blur-md"
+            >
+              <div
+                class="grid grid-cols-5 gap-1 lg:gap-5 bg-[#0E122380] rounded-2xl p-3"
+              >
+                <!-- item -->
+                <p class="text-center">Match / Event</p>
+                <p class="text-center">League</p>
+                <p class="text-center">Prediction</p>
+                <p class="text-center">Confidence Level</p>
+                <p class="text-center">Result</p>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[85%] rounded-full bg-green-500"></div>
+                </div>
+
+                <p class="text-white">85%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-green-950 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#22B759"
+                      />
+                      <path
+                        d="M12.752 6L7.5957 11.25L5.25195 8.86364"
+                        stroke="#22B759"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-green-500">Won</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- parent item -->
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-5 border border-soft-gray/10 bg-[#0E122380] rounded-2xl p-3"
+            >
+              <!-- item -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/arsenal.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <p class="text-[12px]">VS</p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/match-logo/chelsea.png"
+                      class="w-5.5"
+                      alt="img"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                </div>
+                <p class="text-sm">Yesterday</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-[#7CA0F3]">La Liga</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2 lg:justify-center">
+                <img
+                  src="assets/images/icons/prediction-catagory/football.png"
+                  class="w-4 opacity-90"
+                  alt="img"
+                />
+                <p class="text-soft-gray/90">Arsenal to Win</p>
+              </div>
+              <!-- item -->
+              <div class="flex items-center gap-2.5 lg:justify-center">
+                <div class="w-25 bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div class="h-full w-[55%] bg-red-400 rounded-full"></div>
+                </div>
+
+                <p class="text-white">55%</p>
+              </div>
+              <!-- item -->
+              <div class="flex lg:justify-center items-center">
+                <div>
+                  <div
+                    class="flex justify-center items-center gap-2 py-1.5 px-2.5 rounded-full bg-soft-red/10 w-auto"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="17"
+                        height="17"
+                        rx="8.5"
+                        stroke="#F16769"
+                      />
+                      <path
+                        d="M12.8228 5.18326C12.7667 5.12701 12.7 5.08238 12.6266 5.05193C12.5532 5.02148 12.4745 5.00581 12.395 5.00581C12.3155 5.00581 12.2369 5.02148 12.1634 5.05193C12.09 5.08238 12.0234 5.12701 11.9672 5.18326L9 8.14442L6.03278 5.1772C5.9766 5.12102 5.90991 5.07646 5.8365 5.04605C5.7631 5.01565 5.68443 5 5.60499 5C5.52554 5 5.44687 5.01565 5.37347 5.04605C5.30007 5.07646 5.23337 5.12102 5.1772 5.1772C5.12102 5.23337 5.07646 5.30007 5.04605 5.37347C5.01565 5.44687 5 5.52554 5 5.60499C5 5.68443 5.01565 5.7631 5.04605 5.8365C5.07646 5.90991 5.12102 5.9766 5.1772 6.03278L8.14442 9L5.1772 11.9672C5.12102 12.0234 5.07646 12.0901 5.04605 12.1635C5.01565 12.2369 5 12.3156 5 12.395C5 12.4745 5.01565 12.5531 5.04605 12.6265C5.07646 12.6999 5.12102 12.7666 5.1772 12.8228C5.23337 12.879 5.30007 12.9235 5.37347 12.9539C5.44687 12.9844 5.52554 13 5.60499 13C5.68443 13 5.7631 12.9844 5.8365 12.9539C5.90991 12.9235 5.9766 12.879 6.03278 12.8228L9 9.85558L11.9672 12.8228C12.0234 12.879 12.0901 12.9235 12.1635 12.9539C12.2369 12.9844 12.3156 13 12.395 13C12.4745 13 12.5531 12.9844 12.6265 12.9539C12.6999 12.9235 12.7666 12.879 12.8228 12.8228C12.879 12.7666 12.9235 12.6999 12.9539 12.6265C12.9844 12.5531 13 12.4745 13 12.395C13 12.3156 12.9844 12.2369 12.9539 12.1635C12.9235 12.0901 12.879 12.0234 12.8228 11.9672L9.85558 9L12.8228 6.03278C13.0534 5.80219 13.0534 5.41385 12.8228 5.18326Z"
+                        fill="#F16769"
+                      />
+                    </svg>
+
+                    <span class="text-red-400">Lost</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- bottom card -->
+        <div
+          class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 bg-[#0E122380] mt-12.5"
+        >
+          <!-- item -->
+          <div
+            class="border border-soft-gray/10 rounded-2xl p-5 bg-[#262A3B80]"
+          >
+            <div class="flex justify-between gap-2">
+              <div
+                class="h-12 w-12 rounded-full bg-[#172968] flex items-center justify-center"
+              >
+                <img
+                  src="assets/images/icons/success-accuracy.png"
+                  alt="icon"
+                  class="w-5.5"
+                />
+              </div>
+              <div
+                class="flex items-center gap-2 bg-[#173F42] rounded-lg px-2 h-6.5"
+              >
+                <img src="assets/images/icons/chart-up.png" alt="icon" />
+                <span class="text-[#00FF44] text-sm">+1.5%</span>
+              </div>
+            </div>
+            <p class="uppercase text-sm text-soft-gray mt-4">
+              Success Accuracy
+            </p>
+            <!-- progress -->
+            <div class="space-y-2 mt-3">
+              <h3 class="text-white font-medium">86.4%</h3>
+              <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                <div class="h-full w-[86%] bg-brand rounded-full"></div>
+              </div>
+              <p class="text-sm text-soft-gray/60 mt-3">
+                Based on historical results
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="border border-soft-gray/10 rounded-2xl p-5 bg-[#262A3B80]"
+          >
+            <div class="flex justify-between gap-2">
+              <div
+                class="h-12 w-12 rounded-full bg-secondary/20 flex items-center justify-center"
+              >
+                <img
+                  src="assets/images/icons/win.png"
+                  alt="icon"
+                  class="w-5.5"
+                />
+              </div>
+              <div
+                class="flex items-center gap-2 bg-[#173F42] rounded-lg px-2 h-6.5"
+              >
+                <img src="assets/images/icons/chart-up.png" alt="icon" />
+                <span class="text-[#00FF44] text-sm">+1.5%</span>
+              </div>
+            </div>
+            <p class="uppercase text-sm text-soft-gray mt-4">Win Percentage</p>
+            <!-- progress -->
+            <div class="space-y-2 mt-3">
+              <h3 class="text-white font-medium">80%</h3>
+              <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                <div class="h-full w-[80%] bg-secondary rounded-full"></div>
+              </div>
+              <p class="text-sm text-soft-gray/60 mt-3">Continuously Updated</p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="border border-soft-gray/10 rounded-2xl p-5 bg-[#262A3B80]"
+          >
+            <div class="flex justify-between gap-2">
+              <div
+                class="h-12 w-12 rounded-full bg-[#173F42] flex items-center justify-center"
+              >
+                <img
+                  src="assets/images/icons/confidence-level.png"
+                  alt="icon"
+                  class="w-5.5"
+                />
+              </div>
+              <div
+                class="flex items-center gap-2 bg-[#2B3043] rounded-lg px-3 h-6.5"
+              >
+                <span class="text-soft-gray text-sm">Stable</span>
+              </div>
+            </div>
+            <p class="uppercase text-sm text-soft-gray mt-4">
+              Confidence Level
+            </p>
+            <!-- progress -->
+            <div class="space-y-2 mt-3">
+              <h3 class="text-white font-medium">80%</h3>
+              <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                <div class="h-full w-[80%] bg-green-500 rounded-full"></div>
+              </div>
+              <p class="text-sm text-soft-gray/60 mt-3">Confidence Level</p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="border border-soft-gray/10 rounded-2xl p-5 bg-[#262A3B80]"
+          >
+            <div class="flex justify-between gap-2">
+              <div
+                class="h-12 w-12 rounded-full bg-[#3D373F] flex items-center justify-center"
+              >
+                <img
+                  src="assets/images/icons/consistency-score.png"
+                  alt="icon"
+                  class="w-5.5"
+                />
+              </div>
+              <div
+                class="flex items-center gap-2 bg-[#173F42] rounded-lg px-2 h-6.5"
+              >
+                <img src="assets/images/icons/chart-up.png" alt="icon" />
+                <span class="text-[#00FF44] text-sm">+1.5%</span>
+              </div>
+            </div>
+            <p class="uppercase text-sm text-soft-gray mt-4">
+              Consistency Score
+            </p>
+            <!-- progress -->
+            <div class="space-y-2 mt-3">
+              <h3 class="text-white font-medium">9.4 <span>/10</span></h3>
+              <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                <div class="h-full w-[94%] bg-[#BB9709] rounded-full"></div>
+              </div>
+              <p class="text-sm text-soft-gray/60 mt-3">
+                Based on historical results
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-20 max-h-20 h-full w-full blur-[50px] opacity-90 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-2/5 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-30 top-3/6 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-40 top-1/4 left-0 right-0 mx-auto absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Previous Prediction Result Section End -->
+    <!-- Review Start -->
+    <section class="section-gap relative">
+      <div class="container">
+        <div class="flex justify-center md:justify-between flex-wrap gap-6">
+          <div class="max-w-140 md:text-start text-center">
+            <h3>
+              What Our Users Say
+              <span
+                class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
+                >About Us</span
+              >
+            </h3>
+            <p>Feedback that reflects trust, accuracy, and real value.</p>
+          </div>
+          <div class="hidden md:flex items-center gap-2">
+            <span
+              class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+              id="swiper-slider-button-next"
+            >
+              <svg
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span
+              class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+              id="swiper-slider-button-prev"
+            >
+              <svg
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="transform: rotate(180deg)"
+              >
+                <path
+                  d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="swiper user-review-slider inner-gap">
+          <div class="swiper-wrapper">
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-2.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-3.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-3.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:hidden flex items-center gap-2 mt-6 justify-center">
+          <span
+            class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+            id="swiper-slider-button-next"
+          >
+            <svg
+              width="10"
+              height="18"
+              viewBox="0 0 10 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span
+            class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+            id="swiper-slider-button-prev"
+          >
+            <svg
+              width="10"
+              height="18"
+              viewBox="0 0 10 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="transform: rotate(180deg)"
+            >
+              <path
+                d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-80 max-h-75 h-full w-full top-35 left-25 absolute">
+        <img
+          src="assets/images/shape/quatation.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Review End -->
+    <!-- Cta Start -->
+    <section class="pt-10 md:pt-15 -mb-30">
+      <div class="container">
+        <div
+          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
+        >
+          <div
+            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
+          >
+            <div class="max-w-140">
+              <h3 class="md:text-start text-center">
+                Start getting smart sports predictions today
+              </h3>
+            </div>
+            <div class="inline-block">
+              <a href="#" class="primary-btn"
+                >Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="absolute top-0 left-0 h-full w-full">
+            <img
+              src="assets/images/bg/bg-1.jpg"
+              alt="img"
+              class="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cta End -->
+    <!-- Footer Start -->
+    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+      <div class="container relative z-10">
+        <div class="max-w-135 mx-auto text-center">
+          <a href="index.html"
+            ><img
+              src="assets/images/logo.png"
+              class="max-w-50 mx-auto"
+              alt="logo"
+          /></a>
+          <p class="mt-3">
+            Precision Analytics for Sports Enthusiasts. Connect with top
+            predictors for real-time insights.
+          </p>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
+          >
+            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Predictions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >How it works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/twitter.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/telegram.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/linkedin.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
+        >
+          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+          <ul
+            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Refund Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- disclaimer -->
+        <div
+          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
+        >
+          <p class="text-sm text-soft-gray/50">
+            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+            are provided for informational purposes only. Outcomes are never
+            guaranteed, and past performance does not guarantee future results.
+          </p>
+        </div>
+      </div>
+      <div class="h-full w-full top-0 left-0 absolute -z-10">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full h-full"
+        />
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <script>
+      const openBtn = document.getElementById("open-menu");
+      const closeBtn = document.getElementById("close-menu");
+      const canvasMenu = document.getElementById("canvas-menu");
+      const overlay = document.getElementById("overlay");
+      openBtn.addEventListener("click", () => {
+        canvasMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      closeBtn.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+
+      overlay.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+    </script>
+    <!-- filter js -->
+    <script>
+      document.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("filter-btn")) return;
+        const btn = e.target;
+        const container = btn.closest(".filter-container");
+        const filterButtons = container.querySelectorAll(".filter-btn");
+        const filterItems = container.querySelectorAll(".filter-item");
+        // active button
+        filterButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+        filterItems.forEach((item) => {
+          const categories = item.dataset.category.split(" ");
+          if (filter === "all" || categories.includes(filter)) {
+            item.classList.remove("filter-hide");
+            item.classList.add("filter-show");
+          } else {
+            item.classList.add("filter-hide");
+            item.classList.remove("filter-show");
+          }
+        });
+      });
+    </script>
+    <!-- Swiper slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- user review slider js -->
+    <script>
+      const userReviewSlider = new Swiper(".user-review-slider", {
+        slidesPerView: 3,
+        centeredSlides: true,
+        loop: true,
+        speed: 1000,
+        spaceBetween: 20,
+        autoplay: false,
+
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        // },
+        navigation: {
+          nextEl: "#swiper-slider-button-next",
+          prevEl: "#swiper-slider-button-prev",
+        },
+        grabCursor: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+
+          768: {
+            slidesPerView: 2,
+          },
+        },
+      });
+    </script>
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        mirror: true,
+        once: false,
+        offset: 100,
+        anchorPlacement: "top-bottom",
+        disableMutationObserver: false,
+      });
+    </script>
+    <!-- preloader js -->
+    <script>
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        preloader.classList.add("opacity-0");
+        setTimeout(() => {
+          preloader.classList.add("hidden");
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

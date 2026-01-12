@@ -1,0 +1,4742 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prediction</title>
+    <!-- Aos animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Swiper Slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md"
+    >
+      <div class="text-center">
+        <!-- Glowing Spinner -->
+        <div class="relative w-22 h-22 mx-auto mb-6">
+          <!-- Outer Pulse Ring -->
+          <div
+            class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"
+          ></div>
+          <!-- Main Spinning Ring -->
+          <div
+            class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin"
+          ></div>
+          <!-- Inner Glow -->
+          <div
+            class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse"
+          ></div>
+          <!-- Center Core -->
+          <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
+        </div>
+
+        <!-- Text with Dot Animation -->
+        <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
+        <div class="flex justify-center space-x-2">
+          <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"
+          ></div>
+          <div
+            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"
+          ></div>
+        </div>
+        <p class="text-gray-400 text-sm mt-4">
+          Analyzing matches & generating winning tips...
+        </p>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+      <div class="container">
+        <div class="flex justify-between items-center">
+          <a href="#" class="text-2xl font-bold text-brand"
+            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
+          /></a>
+          <button id="open-menu" class="lg:hidden text-gray-700">
+            <!-- Hamburger icon -->
+            <svg
+              class="w-9 h-9 bg-brand rounded-full p-1.5"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+            <a
+              href="index.html"
+              class="active text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Home</a
+            >
+            <a
+              href="about-us.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >About</a
+            >
+            <a
+              href="live-prediction.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Live Predictions</a
+            >
+            <a
+              href="pricing.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Pricing</a
+            >
+            <a
+              href="blog.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Blog</a
+            >
+          </nav>
+          <div class="hidden lg:flex items-center gap-2.5">
+            <a
+              href="login.html"
+              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+              >Login</a
+            >
+            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+    <!-- Off‑canvas menu -->
+    <aside
+      id="canvas-menu"
+      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
+    >
+      <div
+        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
+      >
+        <a href="#" class="text-2xl font-bold text-brand"
+          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
+        /></a>
+        <button id="close-menu" class="text-white">✕</button>
+      </div>
+      <nav class="flex flex-col p-4 space-y-3">
+        <a
+          href="#"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Home</a
+        >
+        <a
+          href="#"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >About</a
+        >
+        <a
+          href="#"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Live Predictions</a
+        >
+        <a
+          href="#"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Pricing</a
+        >
+        <a
+          href="#"
+          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
+          >Blog</a
+        >
+        <a href="#" class="primary-btn w-full mt-6">Sign Up</a>
+        <div class="from-brand to-secondary bg-linear-to-r p-px rounded-full">
+          <a href="login.html" class="secondary-btn group">Login </a>
+        </div>
+      </nav>
+    </aside>
+    <!-- Hero Section Start -->
+    <section
+      class="relative pt-30 pb-15 md:pt-35 md:pb-20 lg:pt-45 lg:pb-30 -mt-18"
+    >
+      <div class="container">
+        <div
+          class="max-w-150 space-y-6 mx-auto md:mx-0 text-center md:text-start"
+        >
+          <div class="inline-block">
+            <div
+              class="flex items-center gap-2 border border-soft-red/30 rounded-3xl py-1.5 px-3 bg-soft-red/10"
+            >
+              <img src="assets/images/icons/live.png" alt="icon" />
+              <span class="text-soft-red font-medium">LIVE ANALYSIS</span>
+            </div>
+          </div>
+          <h1 class="leading-tight" data-aos="fade-down">
+            Smarter Predictions, Delivered
+            <span
+              class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
+              >Instantly To Telegram
+            </span>
+          </h1>
+
+          <p class="text-[18px]">
+            No card needed to start. Upgrade anytime. Powered by advanced
+            analysis and delivered straight to your Telegram-instantly.
+          </p>
+          <div
+            class="flex items-center gap-2 md:gap-3 flex-wrap justify-center md:justify-start"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            data-aos-duration="1200"
+          >
+            <a href="live-prediction.html" class="primary-btn">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                class="svg-white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_1091_87)">
+                  <path
+                    d="M14.064 0.0849418C14.1863 0.155865 14.281 0.266179 14.3326 0.397864C14.3841 0.529548 14.3894 0.674818 14.3477 0.809942L12.0965 8.12494H16.2502C16.3723 8.12489 16.4917 8.16059 16.5937 8.22763C16.6958 8.29467 16.7759 8.39011 16.8243 8.50218C16.8727 8.61425 16.8872 8.73804 16.866 8.85826C16.8449 8.97848 16.789 9.08987 16.7052 9.17869L6.70525 19.8037C6.60849 19.9066 6.47973 19.9737 6.33997 19.994C6.2002 20.0144 6.05766 19.9868 5.93559 19.9157C5.81351 19.8447 5.7191 19.7344 5.66774 19.6028C5.61638 19.4712 5.61109 19.3261 5.65275 19.1912L7.904 11.8749H3.75025C3.62818 11.875 3.50877 11.8393 3.40676 11.7723C3.30474 11.7052 3.2246 11.6098 3.17621 11.4977C3.12782 11.3856 3.1133 11.2618 3.13446 11.1416C3.15561 11.0214 3.21151 10.91 3.29525 10.8212L13.2952 0.196192C13.3919 0.0934407 13.5204 0.0264026 13.66 0.00597751C13.7996 -0.0144476 13.942 0.0129417 14.064 0.0836918V0.0849418ZM5.1965 10.6249H8.75025C8.84806 10.6249 8.94451 10.6479 9.03184 10.6919C9.11917 10.736 9.19494 10.7999 9.25306 10.8786C9.31118 10.9572 9.35003 11.0484 9.36647 11.1449C9.38292 11.2413 9.37651 11.3402 9.34775 11.4337L7.63775 16.9874L14.8027 9.37494H11.2502C11.1524 9.37496 11.056 9.35202 10.9687 9.30797C10.8813 9.26393 10.8056 9.2 10.7474 9.12133C10.6893 9.04266 10.6505 8.95145 10.634 8.85503C10.6176 8.75861 10.624 8.65968 10.6527 8.56619L12.3627 3.01244L5.1965 10.6249Z"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1091_87">
+                    <rect width="20" height="20" />
+                  </clipPath>
+                </defs>
+              </svg>
+              Get Free Predictions</a
+            >
+            <div
+              class="from-brand to-secondary bg-linear-to-r p-px rounded-full"
+            >
+              <a href="pricing.html" class="secondary-btn group"
+                >View Premium Plans
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20". 
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <ul
+            class="flex items-center flex-wrap gap-2 md:gap-6 border-t pt-5 justify-center md:justify-start border-white/10"
+          >
+            <li
+              class="flex items-center gap-2"
+              data-aos="fade-right"
+              data-aos-delay="800"
+              data-aos-duration="1200"
+            >
+              <svg
+                width="17"
+                height="13"
+                viewBox="0 0 17 13"
+                class="svg-brand"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.49617 0.220552C3.42857 0.151583 3.34805 0.0966092 3.2592 0.0587718C3.17035 0.0209344 3.07491 0.000975125 2.97835 3.48471e-05C2.88178 -0.000905431 2.78597 0.0171914 2.6964 0.0532915C2.60683 0.0893916 2.52526 0.142788 2.45633 0.210428C1.67688 0.985745 1.05855 1.90764 0.636983 2.92299C0.215412 3.93834 -0.00107244 5.02708 4.18506e-06 6.12647C-0.0011399 7.26806 0.232299 8.39772 0.68584 9.44535C1.13938 10.493 1.80335 11.4363 2.63655 12.2167C2.77681 12.3463 2.96207 12.4162 3.153 12.4115C3.34394 12.4067 3.52551 12.3278 3.65918 12.1913C3.97913 11.8714 3.93964 11.3621 3.63184 11.0675C2.96308 10.4301 2.43091 9.66347 2.06765 8.81407C1.70439 7.96467 1.51764 7.05028 1.51875 6.12647C1.51875 4.25739 2.26902 2.56247 3.48604 1.32924C3.77967 1.03055 3.81004 0.534427 3.49617 0.220552ZM5.27918 2.00559C5.14583 1.86838 4.96353 1.78963 4.77223 1.7866C4.58092 1.78356 4.39621 1.85648 4.25858 1.98939C3.71063 2.52992 3.27571 3.17407 2.97916 3.88434C2.68261 4.5946 2.53035 5.35678 2.53125 6.12647C2.53125 7.83962 3.27038 9.37963 4.44792 10.4448C4.58701 10.5674 4.76796 10.6318 4.95326 10.6247C5.13856 10.6175 5.314 10.5393 5.4432 10.4063C5.7753 10.0742 5.71354 9.55175 5.40169 9.25813C4.97437 8.85619 4.63396 8.37093 4.40148 7.8323C4.16899 7.29368 4.04938 6.71312 4.05 6.12647C4.05 4.96209 4.51272 3.90504 5.265 3.12947C5.55458 2.83179 5.60217 2.32756 5.27918 2.00559ZM10.9208 2.00458C11.0542 1.86737 11.2365 1.78862 11.4278 1.78558C11.6191 1.78255 11.8038 1.85547 11.9414 1.98838C12.4895 2.52902 12.9245 3.17335 13.221 3.88379C13.5176 4.59424 13.6698 5.35661 13.6688 6.12647C13.6688 7.83962 12.9296 9.37963 11.7521 10.4448C11.613 10.5674 11.4321 10.6318 11.2467 10.6247C11.0614 10.6175 10.886 10.5393 10.7568 10.4063C10.4247 10.0742 10.4865 9.55175 10.7983 9.25813C11.2256 8.85619 11.5661 8.37093 11.7985 7.8323C12.031 7.29368 12.1506 6.71312 12.15 6.12647C12.15 4.96209 11.6873 3.90504 10.935 3.12947C10.6454 2.83179 10.5978 2.32655 10.9208 2.00458ZM12.7038 0.220552C12.7714 0.151583 12.852 0.0966092 12.9408 0.0587718C13.0297 0.0209344 13.1251 0.000975125 13.2217 3.48471e-05C13.3182 -0.000905431 13.414 0.0171914 13.5036 0.0532915C13.5932 0.0893916 13.6748 0.142788 13.7437 0.210428C14.5231 0.985745 15.1415 1.90764 15.563 2.92299C15.9846 3.93834 16.2011 5.02708 16.2 6.12647C16.2011 7.26806 15.9677 8.39772 15.5142 9.44535C15.0606 10.493 14.3967 11.4363 13.5635 12.2167C13.4232 12.3463 13.2379 12.4162 13.047 12.4115C12.8561 12.4067 12.6745 12.3278 12.5408 12.1913C12.2209 11.8714 12.2604 11.3621 12.5692 11.0675C13.2378 10.43 13.7697 9.66334 14.1328 8.81395C14.4959 7.96455 14.6825 7.05021 14.6813 6.12647C14.6813 4.25739 13.931 2.56247 12.714 1.32924C12.4203 1.03055 12.39 0.534427 12.7038 0.220552ZM8.1 4.60772C7.69721 4.60772 7.31091 4.76773 7.02609 5.05255C6.74127 5.33737 6.58125 5.72367 6.58125 6.12647C6.58125 6.52926 6.74127 6.91556 7.02609 7.20038C7.31091 7.48521 7.69721 7.64522 8.1 7.64522C8.5028 7.64522 8.8891 7.48521 9.17392 7.20038C9.45874 6.91556 9.61875 6.52926 9.61875 6.12647C9.61875 5.72367 9.45874 5.33737 9.17392 5.05255C8.8891 4.76773 8.5028 4.60772 8.1 4.60772Z"
+                />
+              </svg>
+              <span class="text-soft-gray">Live Match</span>
+            </li>
+            <li
+              class="flex items-center gap-2"
+              data-aos="fade-up"
+              data-aos-delay="1000"
+              data-aos-duration="1200"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                class="svg-brand"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M2.25 4.5C2.25 3.90326 2.48705 3.33097 2.90901 2.90901C3.33097 2.48705 3.90326 2.25 4.5 2.25H13.5C14.0967 2.25 14.669 2.48705 15.091 2.90901C15.5129 3.33097 15.75 3.90326 15.75 4.5V13.5C15.75 14.0967 15.5129 14.669 15.091 15.091C14.669 15.5129 14.0967 15.75 13.5 15.75H4.5C3.90326 15.75 3.33097 15.5129 2.90901 15.091C2.48705 14.669 2.25 14.0967 2.25 13.5V4.5ZM9.75 6C9.75 5.80109 9.67098 5.61032 9.53033 5.46967C9.38968 5.32902 9.19891 5.25 9 5.25C8.80109 5.25 8.61032 5.32902 8.46967 5.46967C8.32902 5.61032 8.25 5.80109 8.25 6V12C8.25 12.1989 8.32902 12.3897 8.46967 12.5303C8.61032 12.671 8.80109 12.75 9 12.75C9.19891 12.75 9.38968 12.671 9.53033 12.5303C9.67098 12.3897 9.75 12.1989 9.75 12V6ZM6.75 8.25C6.75 8.05109 6.67098 7.86032 6.53033 7.71967C6.38968 7.57902 6.19891 7.5 6 7.5C5.80109 7.5 5.61032 7.57902 5.46967 7.71967C5.32902 7.86032 5.25 8.05109 5.25 8.25V12C5.25 12.1989 5.32902 12.3897 5.46967 12.5303C5.61032 12.671 5.80109 12.75 6 12.75C6.19891 12.75 6.38968 12.671 6.53033 12.5303C6.67098 12.3897 6.75 12.1989 6.75 12V8.25ZM12.75 10.5C12.75 10.3011 12.671 10.1103 12.5303 9.96967C12.3897 9.82902 12.1989 9.75 12 9.75C11.8011 9.75 11.6103 9.82902 11.4697 9.96967C11.329 10.1103 11.25 10.3011 11.25 10.5V12C11.25 12.1989 11.329 12.3897 11.4697 12.5303C11.6103 12.671 11.8011 12.75 12 12.75C12.1989 12.75 12.3897 12.671 12.5303 12.5303C12.671 12.3897 12.75 12.1989 12.75 12V10.5Z"
+                />
+              </svg>
+
+              <span class="text-soft-gray">Real Analysts</span>
+            </li>
+            <li
+              class="flex items-center gap-2"
+              data-aos-delay="800"
+              data-aos="fade-left"
+              data-aos-duration="1200"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                class="svg-stroke-brand"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.5 9L2.25 15.75L15.75 9L2.25 2.25L4.5 9ZM4.5 9H9"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <span class="text-soft-gray">Telegram Delivery</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- slider code  -->
+      <div class="hero-slider-area hidden md:block">
+        <div class="swiper hero-slider">
+          <div class="swiper-wrapper">
+            <!-- item -->
+            <div class="swiper-slide">
+              <img
+                src="assets/images/slider/slide-item-1.png"
+                alt="img"
+                class="w-full"
+              />
+            </div>
+            <!-- item -->
+            <div class="swiper-slide">
+              <img
+                src="assets/images/slider/slide-item-5.png"
+                alt="img"
+                class="w-full"
+              />
+            </div>
+            <!-- item -->
+            <div class="swiper-slide">
+              <img
+                src="assets/images/slider/slide-item-3.png"
+                alt="img"
+                class="w-full"
+              />
+            </div>
+            <!-- item -->
+            <div class="swiper-slide">
+              <img
+                src="assets/images/slider/slide-item-4.png"
+                alt="img"
+                class="w-full"
+              />
+            </div>
+            <!-- item -->
+            <div class="swiper-slide">
+              <img
+                src="assets/images/slider/slide-item-2.png"
+                alt="img"
+                class="w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+        <img
+          src="assets/images/thumbnails/hero-thumbnail.jpg"
+          alt="image"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </section>
+    <!-- Hero Section End -->
+    <section class="section-gap">
+      <div class="max-w-400 mx-auto px-3.5">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 border border-[#1F2334] bg-[#121627CC] p-5 py-10 rounded-2xl relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-secondary/70 after:w-16 after:h-16 after:blur-2xl overflow-hidden"
+        >
+          <!-- item -->
+          <div
+            class="2xl:flex items-center gap-4 space-y-3 text-center 2xl:text-start"
+          >
+            <div
+              class="min-w-15 md:min-w-20 md:w-20 w-15 md:h-20 h-15 mx-auto rounded-full p-2 bg-gradient shadow-1 flex items-center justify-center"
+            >
+              <img
+                src="assets/images/icons/secured.png"
+                alt="icon"
+                class="max-w-8 md:max-w-10 w-full"
+              />
+            </div>
+            <div>
+              <h6>Proven Accuracy</h6>
+              <p class="text-[16px] text-soft-gray/80 mt-1">
+                Expert sports insights backed by consistent performance.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="2xl:flex items-center gap-4 space-y-3 text-center 2xl:text-start"
+          >
+            <div
+              class="min-w-15 md:min-w-20 md:w-20 w-15 md:h-20 h-15 mx-auto rounded-full p-2 bg-gradient shadow-1 flex items-center justify-center"
+            >
+              <img
+                src="assets/images/icons/delivery.png"
+                alt="icon"
+                class="max-w-8 md:max-w-10 w-full"
+              />
+            </div>
+            <div>
+              <h6>Instant Telegram Delivery</h6>
+              <p class="text-[16px] text-soft-gray/80 mt-1">
+                Get predictions delivered instantly to your Telegram inbox.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="2xl:flex items-center gap-4 space-y-3 text-center 2xl:text-start"
+          >
+            <div
+              class="min-w-15 md:min-w-20 md:w-20 w-15 md:h-20 h-15 mx-auto rounded-full p-2 bg-gradient shadow-1 flex items-center justify-center"
+            >
+              <img
+                src="assets/images/icons/referral.png"
+                alt="icon"
+                class="max-w-8 md:max-w-10 w-full"
+              />
+            </div>
+            <div>
+              <h6>Referral Earning System</h6>
+              <p class="text-[16px] text-soft-gray/80 mt-1">
+                Earn commissions when your referrals subscribe.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="2xl:flex items-center gap-4 space-y-3 text-center 2xl:text-start"
+          >
+            <div
+              class="min-w-15 md:min-w-20 md:w-20 w-15 md:h-20 h-15 mx-auto rounded-full p-2 bg-gradient shadow-1 flex items-center justify-center"
+            >
+              <img
+                src="assets/images/icons/secured.png"
+                alt="icon"
+                class="max-w-8 md:max-w-10 w-full"
+              />
+            </div>
+            <div>
+              <h6>Multi-Sport Coverage</h6>
+              <p class="text-[16px] text-soft-gray/80 mt-1">
+                Football, cricket, basketball, and more.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Started steps Start -->
+    <section class="section-gap relative">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Get Started in Four Simple Steps</h3>
+          <p>
+            Create an account, connect Telegram, and start receiving predictions
+            instantly. No complicated setup, no learning curve.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 inner-gap"
+        >
+          <!-- item -->
+          <div
+            class="text-center group"
+            data-aos="fade-up"
+            data-aos-duration="300"
+            data-aos-delay="200"
+          >
+            <div class="max-w-60 max-h-60 mx-auto relative">
+              <img
+                src="assets/images/thumbnails/sign-up-step-1.jpg"
+                alt="img"
+                class="w-full rounded-full group-hover:scale-105 duration-900"
+              />
+              <span
+                class="h-10 w-10 rounded-full bg-gradient flex justify-center items-center text-xl font-medium text-white absolute top-3 right-6 outline-4 outline-black group-hover:outline-white duration-700"
+                >1</span
+              >
+            </div>
+            <div class="space-y-3 mt-6">
+              <h5>Sign Up Free</h5>
+              <p>Sign up quickly and get instant access to your dashboard.</p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="text-center group"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="400"
+          >
+            <div class="max-w-60 max-h-60 mx-auto relative">
+              <img
+                src="assets/images/thumbnails/connect-step-2.jpg"
+                alt="img"
+                class="w-full rounded-full group-hover:scale-105 duration-900"
+              />
+              <span
+                class="h-10 w-10 rounded-full bg-gradient flex justify-center items-center text-xl font-medium text-white absolute top-3 right-6 outline-4 outline-black group-hover:outline-white duration-700"
+                >2</span
+              >
+            </div>
+            <div class="space-y-3 mt-6">
+              <h5>Connect Telegram</h5>
+              <p>
+                Connect Telegram once and receive all predictions instantly.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="text-center group"
+            data-aos="fade-up"
+            data-aos-duration="900"
+            data-aos-delay="600"
+          >
+            <div class="max-w-60 max-h-60 mx-auto relative">
+              <img
+                src="assets/images/thumbnails/receive-step-3.jpg"
+                alt="img"
+                class="w-full rounded-full group-hover:scale-105 duration-900"
+              />
+              <span
+                class="h-10 w-10 rounded-full bg-gradient flex justify-center items-center text-xl font-medium text-white absolute top-3 right-6 outline-4 outline-black group-hover:outline-white duration-700"
+                >3</span
+              >
+            </div>
+            <div class="space-y-3 mt-6">
+              <h5>Receive Predictions</h5>
+              <p>Receive smart, accurate sports predictions every day.</p>
+            </div>
+          </div>
+          <!-- item -->
+          <div
+            class="text-center group"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay="800"
+          >
+            <div class="max-w-60 max-h-60 mx-auto relative">
+              <img
+                src="assets/images/thumbnails/earn-step-4.jpg"
+                alt="img"
+                class="w-full rounded-full group-hover:scale-105 duration-900"
+              />
+              <span
+                class="h-10 w-10 rounded-full bg-gradient flex justify-center items-center text-xl font-medium text-white absolute top-3 right-6 outline-4 outline-black group-hover:outline-white duration-700"
+                >4</span
+              >
+            </div>
+            <div class="space-y-3 mt-6">
+              <h5>Invite & Earn</h5>
+              <p>Invite friends and earn commissions whenever they upgrade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- step-bg-shape  -->
+      <div class="absolute top-0 left-0 w-full h-full -z-10">
+        <img
+          src="assets/images/shape/shape-bg-1.png"
+          alt="shape"
+          class="w-full object-cover"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] -z-10 opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Started steps End -->
+    <!-- Prediction Section Start -->
+    <section
+      class="section-gap bg-[#0C1021] border-t border-[#1F2334] border-b relative overflow-hidden"
+    >
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Today’s Focused Predictions</h3>
+          <p>
+            Key details are previewed-full insights unlock with a premium plan.
+            Hand-picked matches with the strongest data signals for today.
+          </p>
+        </div>
+        <!-- prediction area -->
+        <div class="inner-gap relative z-10 filter-container">
+          <div class="flex flex-wrap gap-3 mb-10 filter-group justify-center">
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="300"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/dashboard.png"
+                alt="icon"
+                class="max-w-5.5"
+              />ALL
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="football"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="400"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/football.png"
+                alt="icon"
+                class="max-w-5.5"
+              />
+              FOOTBALL
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="cricket"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="500"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/cricket.png"
+                alt="icon"
+                class="max-w-5.5"
+              />CRICKET
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="600"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/tennis.png"
+                alt="icon"
+                class="max-w-5.5"
+              />TENNIS
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="700"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/nfl.png"
+                alt="icon"
+                class="max-w-5.5"
+              />nfl
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="tennis"
+              data-aos="fade-up"
+              data-aos-duration="200"
+              data-aos-delay="800"
+            >
+              <img
+                src="assets/images/icons/prediction-catagory/badminton.png"
+                alt="icon"
+                class="max-w-5.5"
+              />badminton
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 filter-container relative"
+          >
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="football"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/football.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">Football</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="relative">
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="cricket"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/cricket.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">cricket</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <!-- card body -->
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+                <!-- lock screen -->
+                <div
+                  class="absolute top-23 left-0 h-[70%] w-full backdrop-blur-sm space-y-3 text-center px-6 py-2"
+                >
+                  <div
+                    class="h-25 w-25 mx-auto p-6 rounded-full flex items-center justify-center bg-[#1F2334] border border-soft-red/40"
+                  >
+                    <img
+                      src="assets/images/icons/lock-2.png"
+                      alt="icon"
+                      class="w-full"
+                    />
+                  </div>
+                  <p class="uppercase font-normal text-sm">Upgrade to unlock</p>
+                  <div
+                    class="from-brand to-secondary bg-linear-to-r p-px rounded-full"
+                  >
+                    <a href="#" class="secondary-btn group">UPGRADE NOW </a>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+            <!-- prediction card -->
+            <div
+              class="filter-item border border-[#323647] rounded-2xl bg-[#262A3B] overflow-hidden"
+              data-category="tennis"
+            >
+              <!-- card header -->
+              <div class="p-5 bg-[#262A3B] space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/icons/prediction-catagory/tennis.png"
+                      alt="icon"
+                      class="object-contain max-w-5.5"
+                    />
+                    <p class="uppercase text-[#7CA0F3] mt-1">tennis</p>
+                  </div>
+                  <span
+                    class="border border-[#F1676933] bg-[#331F1E33] py-1.5 px-4 rounded-4xl font-medium text-sm text-soft-red"
+                    >PREMIUM</span
+                  >
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/arsenal.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Arsenal</h6>
+                  </div>
+                  <span class="text-sm text-soft-gray">VS</span>
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/prediction-logo/chelsea.png"
+                      alt="logo"
+                      class="max-w-5.5"
+                    />
+                    <h6>Chelsea</h6>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-1.5">
+                    <img
+                      src="assets/images/icons/time.png"
+                      alt="logo"
+                      class="max-w-4.5"
+                    />
+                    <span class="text-soft-gray text-sm mt-1"
+                      >Today ( 22:00 GMT )
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <!-- card body -->
+                <div
+                  class="bg-[#1C2033] p-5 space-y-5 border-t border-[#323647] border-b"
+                >
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Prediction Type</span>
+                    <p class="text-white">Over 2 Goals</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Status</span>
+                    <p class="text-[#E7B105] flex items-center gap-2 leading-0">
+                      <span
+                        class="block h-1.5 w-1.5 bg-[#E7B105] rounded-full"
+                      ></span>
+                      Pending
+                    </p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Exact Odds</span>
+                    <p class="text-white">1.95</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Confidence Level</span>
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        class="w-25 bg-white/10 rounded-full h-2 overflow-hidden"
+                      >
+                        <div
+                          class="h-full w-[85%] rounded-full bg-linear-to-r from-brand to-secondary"
+                        ></div>
+                      </div>
+
+                      <p class="text-white">85%</p>
+                    </div>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Stake Recommendation</span>
+                    <p class="text-white">Medium (3%)</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Detailed Analysis</span>
+                    <p class="text-[#7CA0F3]">Read Full Report</p>
+                  </div>
+                  <!-- item -->
+                  <div class="flex items-center justify-between">
+                    <span class="text-soft-gray/80">Final Score</span>
+                    <p class="text-white">Ind Won by 6 wkts</p>
+                  </div>
+                </div>
+                <!-- lock screen -->
+                <div
+                  class="absolute top-23 left-0 h-[70%] w-full backdrop-blur-sm space-y-3 text-center px-6 py-2"
+                >
+                  <div
+                    class="h-25 w-25 mx-auto p-6 rounded-full flex items-center justify-center bg-[#1F2334] border border-soft-red/40"
+                  >
+                    <img
+                      src="assets/images/icons/lock-2.png"
+                      alt="icon"
+                      class="w-full"
+                    />
+                  </div>
+                  <p class="uppercase font-normal text-sm">Upgrade to unlock</p>
+                  <div
+                    class="from-brand to-secondary bg-linear-to-r p-px rounded-full"
+                  >
+                    <a href="#" class="secondary-btn group">UPGRADE NOW </a>
+                  </div>
+                </div>
+              </div>
+              <!-- card footer -->
+              <div
+                class="flex items-center justify-between px-5 py-2 bg-[#26293C]"
+              >
+                <span class="text-soft-gray/80">Result</span>
+                <div
+                  class="flex items-center gap-2.5 bg-[#212437] rounded-md py-2 px-4"
+                >
+                  <img src="assets/images/icons/lock.png" alt="icon" />
+                  <span class="text-soft-gray/80 mt-1">Premium Only</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center flex justify-center mt-10">
+          <div class="from-brand to-secondary bg-linear-to-r p-px rounded-full">
+            <a href="#" class="secondary-btn group"
+              >Unlock Premium Predictions
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 10H15.8337"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-20 max-h-20 h-full w-full blur-[50px] opacity-90 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+    </section>
+    <!-- Prediction Section End -->
+    <!-- Sharing Feature Start -->
+    <section class="relative section-gap">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Earn More by Sharing Trusted Predictions</h3>
+          <p>
+            Invite others using your personal referral link and earn commissions
+            automatically. The more your network grows, the more you benefit-no
+            extra effort needed.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 inner-gap items-center gap-10"
+        >
+          <div data-aos="zoom-in" data-aos-duration="900" data-aos-delay="200">
+            <img
+              src="assets/images/thumbnails/share-thumbnail.png"
+              alt="img"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <div class="space-y-6">
+              <!-- item -->
+              <div
+                class="flex items-center gap-4"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="100"
+              >
+                <div
+                  class="max-h-13 max-w-13 rounded-full p-2 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/link.png"
+                    alt="icon"
+                    class="max-w-7"
+                  />
+                </div>
+                <div>
+                  <h6>Share unique link</h6>
+                  <p>
+                    Deploy your personal invite link to your sports network.
+                  </p>
+                </div>
+              </div>
+              <!-- item -->
+              <div
+                class="flex items-center gap-4"
+                data-aos="fade-up"
+                data-aos-duration="900"
+                data-aos-delay="200"
+              >
+                <div
+                  class="max-h-13 max-w-13 rounded-full p-2 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/winner.png"
+                    alt="icon"
+                    class="max-w-7"
+                  />
+                </div>
+                <div>
+                  <h6>Referrals upgrade</h6>
+                  <p>
+                    Your referrals subscribe to Premium or VIP prediction
+                    insights.
+                  </p>
+                </div>
+              </div>
+              <!-- item -->
+              <div
+                class="flex items-center gap-4"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+              >
+                <div
+                  class="max-h-13 max-w-13 rounded-full p-2 flex items-center justify-center bg-[#1E223399] border border-[#282C3DCC]"
+                >
+                  <img
+                    src="assets/images/icons/earn.png"
+                    alt="icon"
+                    class="max-w-7"
+                  />
+                </div>
+                <div>
+                  <h6>Earn automatically</h6>
+                  <p>
+                    Commissions flow to your wallet from multiple levels
+                    instantly.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <ul
+              class="flex items-center flex-wrap gap-2 md:gap-6 border-t pt-8 justify-center md:justify-start border-white/10 mt-8"
+            >
+              <li class="flex items-center gap-2">
+                <span class="h-2 w-2 bg-gradient rounded-full"></span>
+                <span class="text-soft-gray">N-Level Structure</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-2 w-2 bg-gradient rounded-full"></span>
+                <span class="text-soft-gray">Real-time Updates</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-2 w-2 bg-gradient rounded-full"></span>
+
+                <span class="text-soft-gray">Withdraw Anytime</span>
+              </li>
+            </ul>
+            <div
+              class="flex mt-7 justify-center md:justify-start"
+              data-aos="fade-up"
+              data-aos-duration="1100"
+              data-aos-delay="400"
+            >
+              <a href="#" class="primary-btn group">
+                Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-25 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <!-- Sharing Feature End -->
+    <!-- Plan Section Start -->
+    <section class="relative section-gap">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Choose a Plan That Fits Your Goals</h3>
+          <p>
+            Each plan is designed for different levels of access, frequency, and
+            earning potential. Start free or unlock deeper insights with premium
+            plans.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 inner-gap items-center gap-6"
+        >
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card"
+            data-aos="fade-up"
+            data-aos-duration="400"
+            data-aos-delay="200"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Basic</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$0</span
+                  ><sub class="text-soft-gray text-sm">/30-Days</sub>
+                </div>
+                <p class="text-sm">Ideal for exploring the platform.</p>
+                <a
+                  href="#"
+                  class="primary-btn mt-6 from-[#25293A] to-[#323647] bg-linear-to-r"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Limited currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 200+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card active"
+            data-aos="fade-up"
+            data-aos-duration="700"
+            data-aos-delay="500"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Silver</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$20</span
+                  ><sub class="text-soft-gray text-sm">/mo</sub>
+                </div>
+                <p class="text-sm">
+                  Get all premium picks and higher accuracy.
+                </p>
+                <a href="#" class="primary-btn mt-6"> Get Started </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      All major currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      2–3 premium signals per day
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 500+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">24×7 support</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Basic</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$0</span
+                  ><sub class="text-soft-gray text-sm">/30-Days</sub>
+                </div>
+                <p class="text-sm">Ideal for exploring the platform.</p>
+                <a
+                  href="#"
+                  class="primary-btn mt-6 from-[#25293A] to-[#323647] bg-linear-to-r"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Limited currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 200+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="900"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Basic</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$0 0</span
+                  ><sub class="text-soft-gray text-sm">/30-Days</sub>
+                </div>
+                <p class="text-sm">Ideal for exploring the platform.</p>
+                <a
+                  href="#"
+                  class="primary-btn mt-6 from-[#25293A] to-[#323647] bg-linear-to-r"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Limited currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 200+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="1100"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Basic</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$0</span
+                  ><sub class="text-soft-gray text-sm">/30-Days</sub>
+                </div>
+                <p class="text-sm">Ideal for exploring the platform.</p>
+                <a
+                  href="#"
+                  class="primary-btn mt-6 from-[#25293A] to-[#323647] bg-linear-to-r"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Limited currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 200+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+          <!-- plan item -->
+          <div
+            class="bg-[#121627] h-full border border-[#232738] rounded-3xl overflow-hidden relative plan-card"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="1200"
+          >
+            <div class="relative">
+              <div class="space-y-2 bg-[#1E2233] p-6 plan-header">
+                <h6>Basic</h6>
+                <div>
+                  <span class="text-white font-medium text-4xl">$0</span
+                  ><sub class="text-soft-gray text-sm">/30-Days</sub>
+                </div>
+                <p class="text-sm">Ideal for exploring the platform.</p>
+                <a
+                  href="#"
+                  class="primary-btn mt-6 from-[#25293A] to-[#323647] bg-linear-to-r"
+                >
+                  Get Started
+                </a>
+              </div>
+              <div class="space-y-5 p-6">
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Access & Signals</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Dashboard signal</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Telegram alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">WhatsApp alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Email alerts</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">SMS alerts</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Prediction Scope</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Limited currency pairs
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Instant notification alerts
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      Up to 200+ profit pips
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">High success rate</p>
+                  </div>
+                </div>
+                <!-- inner item -->
+                <div class="space-y-3">
+                  <h6 class="text-lg">Support & Extras</h6>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">Phone consulting</p>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <img
+                      src="assets/images/icons/close-check.png"
+                      alt="icon"
+                      class="max-w-5"
+                    />
+                    <p class="text-sm text-soft-gray/90">
+                      No dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-shape absolute right-0 top-0">
+              <!-- start animation -->
+              <div
+                class="flex w-25 flex-wrap justify-end absolute top-0 right-0 me-2 mt-2"
+              >
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-4 h-4 twinkle twinkle-fast [animation-delay:0s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="mt-4 w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 h-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 h-4 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-2 twinkle twinkle-slow [animation-delay:0.3s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 -mt-2 -ms-2 h-5 twinkle twinkle-slow [animation-delay:0.6s]"
+                  alt="star"
+                />
+                <img
+                  src="assets/images/icons/star.png"
+                  class="w-5 twinkle twinkle-fast [animation-delay:0.9s]"
+                  alt="star"
+                />
+              </div>
+              <!-- circle shape -->
+              <div
+                class="w-35 h-20 blur-[20px] opacity-100 -top-5 -right-5 absolute from-brand to-secondary bg-linear-to-r rotate-45"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center mt-10">
+          <a href="#" class="primary-btn group">
+            See Full Pricing Details
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              class="svg-stroke-white group-hover:-rotate-60 duration-600"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 10H15.8337"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path></svg
+          ></a>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-25 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-50 right-0 top-1/2 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-50 left-0 top-2/3 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <!-- Plan Section End -->
+    <!-- Why Trust Start -->
+    <section class="relative section-gap">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-150 mx-auto text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>
+            Why Users
+            <span
+              class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
+              >Trust Our Predictions</span
+            >
+          </h3>
+          <p>
+            Trusted by users for accuracy, clarity, and predictions delivered
+            exactly when they matter.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 border border-[#1F2334] bg-[#121627CC] p-5 rounded-2xl relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-secondary/70 after:w-16 after:h-16 after:blur-2xl overflow-hidden inner-gap"
+        >
+          <!-- item -->
+          <div class="space-y-3.5">
+            <div>
+              <img
+                src="assets/images/icons/consistency.png"
+                alt="icon"
+                class="max-w-12 w-full mx-auto"
+              />
+            </div>
+            <div class="text-center">
+              <h6>High Consistency</h6>
+              <p class="text-sm text-soft-gray/80 mt-3">
+                Predictions are based on form analysis, match context, and
+                historical performance-ensuring stable insights over time.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div class="space-y-3.5">
+            <div>
+              <img
+                src="assets/images/icons/instant.png"
+                alt="icon"
+                class="max-w-12 w-full mx-auto"
+              />
+            </div>
+            <div class="text-center">
+              <h6>Instant Delivery</h6>
+              <p class="text-sm text-soft-gray/80 mt-3">
+                Signals are delivered directly to Telegram the moment they’re
+                published, so users never miss an opportunity.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div class="space-y-3.5">
+            <div>
+              <img
+                src="assets/images/icons/multi-sport-1.png"
+                alt="icon"
+                class="max-w-12 w-full mx-auto"
+              />
+            </div>
+            <div class="text-center">
+              <h6>Multi-Sport</h6>
+              <p class="text-sm text-soft-gray/80 mt-3">
+                From football and cricket to other popular sports, predictions
+                cover multiple leagues and competitions in one platform.
+              </p>
+            </div>
+          </div>
+          <!-- item -->
+          <div class="space-y-3.5">
+            <div>
+              <img
+                src="assets/images/icons/eye.png"
+                alt="icon"
+                class="max-w-12 w-full mx-auto"
+              />
+            </div>
+            <div class="text-center">
+              <h6>Transparent</h6>
+              <p class="text-sm text-soft-gray/80 mt-3">
+                Clear insights, confidence notes, and match context-no
+                exaggerated claims, no false promises.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-0 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <!-- Why Trust End -->
+
+    <!-- Faq Start -->
+    <section class="section-gap relative">
+      <div class="container">
+        <!-- common heading -->
+        <div
+          class="max-w-160 md:mx-0 mx-auto md:text-start text-center space-y-2"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h3>Everything You Need to Know</h3>
+          <p>
+            Clear answers to common questions about predictions, subscriptions,
+            and referrals. No confusion-just transparent information to help you
+            decide.
+          </p>
+        </div>
+        <div
+          class="tabs-group grid grid-cols-12 border border-[#3D4152] relative rounded-2xl bg-[#121627CC] overflow-hidden inner-gap after:content-[''] after:absolute after:top-0 after:right-0 after:bg-secondary/80 after:w-16 after:h-16 after:blur-2xl"
+          data-tabs-group="unique-name-1"
+        >
+          <div
+            class="col-span-12 lg:col-span-4 bg-[#121627CC] py-5 px-3 lg:p-5"
+          >
+            <div class="flex items-center gap-2">
+              <img
+                src="assets/images/icons/dashboard.png"
+                alt="icon"
+                class="w-5.5"
+              />
+              <h6 class="text-lg mt-1">Categories</h6>
+            </div>
+            <!-- Tab Buttons -->
+            <div
+              class="flex flex-wrap lg:flex-col space-y-2.5 mt-5 gap-1"
+              role="tablist"
+            >
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="200"
+              >
+                <button
+                  data-tab-target="start"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/startup.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">Getting Started</p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="400"
+                data-aos-delay="200"
+              >
+                <button
+                  data-tab-target="accuracy"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/accuracy.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">
+                        Predictions & Accuracy
+                      </p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="600"
+                data-aos-delay="400"
+              >
+                <button
+                  data-tab-target="payment"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/deposit.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">
+                        Plans & Payments
+                      </p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="600"
+              >
+                <button
+                  data-tab-target="send"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/send.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">
+                        Telegram Delivery
+                      </p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="800"
+              >
+                <button
+                  data-tab-target="reference"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/group-user.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">
+                        Reference System
+                      </p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div
+                role="presentation"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="1000"
+              >
+                <button
+                  data-tab-target="privacy"
+                  aria-selected="true"
+                  role="tab"
+                  class="tab-button text-soft-gray rounded-md py-2 lg:py-3 px-2.5 focus:outline-none w-full"
+                >
+                  <div class="flex items-center gap-2 justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="assets/images/icons/security.png"
+                        alt="icon"
+                        class="w-5.5"
+                      />
+                      <p class="mt-1 text-[15px] lg:text-lg">
+                        Security & Privacy
+                      </p>
+                    </div>
+                    <img
+                      src="assets/images/icons/angle-right.png"
+                      alt="icon"
+                      class="hidden lg:block"
+                    />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-12 lg:col-span-8 bg-[#171a29cc] p-6">
+            <div class="flex items-center gap-2.5">
+              <img
+                src="assets/images/icons/startup.png"
+                alt="icon"
+                class="w-5.5"
+              />
+              <h6>Getting Started</h6>
+            </div>
+            <div class="space-y-3 mt-5">
+              <!-- getting started code here -->
+              <div
+                class="tab-panel hidden animate-fade-in"
+                id="start"
+                role="tabpanel"
+              >
+                <div class="accordion-group" data-mode="single">
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-1"
+                      aria-expanded="false"
+                      data-default
+                    >
+                      How accurate are the predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-1"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-2"
+                      aria-expanded="false"
+                    >
+                      How do I receive predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-2"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-3"
+                      aria-expanded="false"
+                    >
+                      Do I need a paid plan to get predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-3"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-4"
+                      aria-expanded="false"
+                    >
+                      Can I upgrade or cancel my plan anytime?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-4"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-5"
+                      aria-expanded="false"
+                    >
+                      How does the referral system work?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-5"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-6"
+                      aria-expanded="false"
+                    >
+                      When do I receive my referral earnings?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-6"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="start-faq-7"
+                      aria-expanded="false"
+                    >
+                      What sports are covered in the predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="start-faq-7"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-panel hidden animate-fade-in"
+                id="accuracy"
+                role="tabpanel"
+              >
+                <div class="accordion-group">
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-1"
+                      aria-expanded="false"
+                      data-default
+                    >
+                      How accurate are the predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-1"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-2"
+                      aria-expanded="false"
+                    >
+                      How do I receive predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-2"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-3"
+                      aria-expanded="false"
+                    >
+                      Do I need a paid plan to get predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-3"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-4"
+                      aria-expanded="false"
+                    >
+                      Can I upgrade or cancel my plan anytime?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-4"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-5"
+                      aria-expanded="false"
+                    >
+                      How does the referral system work?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-5"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-6"
+                      aria-expanded="false"
+                    >
+                      When do I receive my referral earnings?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-6"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- accordion item -->
+                  <div
+                    class="accordion-item border border-gray-800 rounded-lg mb-2 overflow-hidden shadow-sm bg-[#262A3C]"
+                  >
+                    <button
+                      class="accordion-header w-full flex justify-between items-center py-3 px-4 text-left text-lg text-white hover:bg-brand/10 focus:outline-none"
+                      data-target="accuracy-faq-7"
+                      aria-expanded="false"
+                    >
+                      What sports are covered in the predictions?
+                      <svg
+                        class="default-arrow w-6 h-6 text-gray-600"
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="accordion-content max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out"
+                      id="accuracy-faq-7"
+                    >
+                      <div class="py-3 px-4 border-t border-gray-600">
+                        <p class="text-soft-gray/80">
+                          Our system combines Hasan’s expert analysis with
+                          automated data-driven scoring. Accuracy varies by
+                          sport and league, but consistency is maintained
+                          through continuous model adjustments.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 -bottom-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <!-- Faq End -->
+    <!-- Review Start -->
+    <section class="section-gap relative">
+      <div class="container">
+        <div class="flex justify-center md:justify-between flex-wrap gap-6">
+          <!-- common heading -->
+          <div
+            class="max-w-140 md:text-start text-center"
+            data-aos="fade-up"
+            data-aos-duration="800"
+          >
+            <h3>
+              What Our Users Say
+              <span
+                class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
+                >About Us</span
+              >
+            </h3>
+            <p>Feedback that reflects trust, accuracy, and real value.</p>
+          </div>
+          <div class="hidden md:flex items-center gap-2">
+            <span
+              class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+              id="swiper-slider-button-next"
+            >
+              <svg
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span
+              class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+              id="swiper-slider-button-prev"
+            >
+              <svg
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="transform: rotate(180deg)"
+              >
+                <path
+                  d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="swiper user-review-slider inner-gap">
+          <div class="swiper-wrapper">
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-2.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-3.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-3.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- card item -->
+            <div class="swiper-slide grid grid-cols-1 h-full">
+              <div
+                class="border border-soft-gray/12 bg-[#1D213280] p-5 rounded-xl space-y-4.5"
+              >
+                <!-- card header -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <ul class="flex items-center gap-1.5">
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src="assets/images/icons/review-star.png"
+                          alt="img"
+                          class="w-5"
+                        />
+                      </li>
+                    </ul>
+                    <span class="text-white text-[16px]">(5)</span>
+                  </div>
+                  <div
+                    class="flex justify-center items-center gap-1 font-normal bg-brand/15 py-1.5 px-3 rounded-md text-[#7CA0F3]"
+                  >
+                    Football
+                  </div>
+                </div>
+                <div class="border-t border-[#1F2334]"></div>
+                <!-- card body -->
+                <div>
+                  <p>
+                    “PredictZon is surprisingly accurate. I mostly follow
+                    football picks, and the instant Telegram delivery saves me a
+                    lot of time. Instant Telegram delivery saves”
+                  </p>
+                </div>
+                <!-- card footer -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user/user-1.png"
+                      class="h-15 w-15 rounded-full"
+                      alt="img"
+                    />
+                    <div>
+                      <h6>Devon Lane</h6>
+                      <p class="text-[#7CA0F3]">Manger, MENY</p>
+                    </div>
+                  </div>
+                  <span
+                    class="flex justify-center items-center gap-1 uppercase font-normal bg-soft-gray/10 py-1 px-3 rounded-full text-soft-gray border border-soft-gray/10"
+                    >Gold</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:hidden flex items-center gap-2 mt-6 justify-center">
+          <span
+            class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+            id="swiper-slider-button-next"
+          >
+            <svg
+              width="10"
+              height="18"
+              viewBox="0 0 10 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span
+            class="cursor-pointer h-10 w-10 border border-soft-gray rounded-full flex justify-center items-center hover:bg-linear-to-r from-brand to-secondary duration-700"
+            id="swiper-slider-button-prev"
+          >
+            <svg
+              width="10"
+              height="18"
+              viewBox="0 0 10 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="transform: rotate(180deg)"
+            >
+              <path
+                d="M8.74993 0.75C8.74993 0.75 0.75 6.64187 0.75 8.75C0.75 10.8583 8.75 16.75 8.75 16.75"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <!-- dots shape -->
+      <div class="max-w-100 max-h-85 h-full w-full top-0 left-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-100 max-h-85 h-full w-full top-0 right-0 absolute">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <div class="max-w-80 max-h-75 h-full w-full top-35 left-25 absolute">
+        <img
+          src="assets/images/shape/quatation.png"
+          alt="shape"
+          class="w-full"
+        />
+      </div>
+      <!-- circle shape -->
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+      <div
+        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-0 right-0 absolute from-brand to-secondary bg-linear-to-r"
+      ></div>
+    </section>
+    <!-- Review End -->
+    <!-- Cta Start -->
+    <section class="pt-10 md:pt-15 -mb-30">
+      <div class="container">
+        <div
+          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
+        >
+          <div
+            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
+          >
+            <div class="max-w-140">
+              <h3 class="md:text-start text-center">
+                Start getting smart sports predictions today
+              </h3>
+            </div>
+            <div
+              class="inline-block"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              <a href="#" class="primary-btn"
+                >Create a free account
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 10H15.8337"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="absolute top-0 left-0 h-full w-full">
+            <img
+              src="assets/images/bg/bg-1.jpg"
+              alt="img"
+              class="w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cta End -->
+    <!-- Footer Start -->
+    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+      <div class="container relative z-10">
+        <div class="max-w-135 mx-auto text-center">
+          <a href="index.html"
+            ><img
+              src="assets/images/logo.png"
+              class="max-w-50 mx-auto"
+              alt="logo"
+          /></a>
+          <p class="mt-3">
+            Precision Analytics for Sports Enthusiasts. Connect with top
+            predictors for real-time insights.
+          </p>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+          <div
+            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
+          >
+            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Predictions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="how-it-work.html"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >How it works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+            <li data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/twitter.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/telegram.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+            <li
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="700"
+            >
+              <a
+                href="#"
+                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
+              >
+                <img
+                  src="assets/images/icons/social-icon/linkedin.png"
+                  alt="icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
+        >
+          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+          <ul
+            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
+          >
+            <li>
+              <a
+                href="privacy-policy.html"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="terms-service.html"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="refund-policy.html"
+                class="text-white duration-700 hover:text-brand font-medium"
+                >Refund Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- disclaimer -->
+        <div
+          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
+        >
+          <p class="text-sm text-soft-gray/50">
+            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+            are provided for informational purposes only. Outcomes are never
+            guaranteed, and past performance does not guarantee future results.
+          </p>
+        </div>
+      </div>
+      <div class="h-full w-full top-0 left-0 absolute -z-10">
+        <img
+          src="assets/images/shape/dots-shape.png"
+          alt="shape"
+          class="w-full h-full"
+        />
+      </div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+      <div
+        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
+      ></div>
+    </section>
+    <script src="assets/js/accordion.js"></script>
+    <script src="assets/js/tab.js"></script>
+
+    <script>
+      const openBtn = document.getElementById("open-menu");
+      const closeBtn = document.getElementById("close-menu");
+      const canvasMenu = document.getElementById("canvas-menu");
+      const overlay = document.getElementById("overlay");
+      openBtn.addEventListener("click", () => {
+        canvasMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      closeBtn.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+
+      overlay.addEventListener("click", () => {
+        canvasMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      });
+    </script>
+    <!-- filter js -->
+    <script>
+      document.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("filter-btn")) return;
+
+        const btn = e.target;
+        const container = btn.closest(".filter-container");
+        const filterButtons = container.querySelectorAll(".filter-btn");
+        const filterItems = container.querySelectorAll(".filter-item");
+
+        // active button
+        filterButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.dataset.filter;
+
+        filterItems.forEach((item) => {
+          const categories = item.dataset.category.split(" ");
+          if (filter === "all" || categories.includes(filter)) {
+            item.classList.remove("filter-hide");
+            item.classList.add("filter-show");
+          } else {
+            item.classList.add("filter-hide");
+            item.classList.remove("filter-show");
+          }
+        });
+      });
+    </script>
+
+    <!-- Swiper slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- user review slider js -->
+    <script>
+      const userReviewSlider = new Swiper(".user-review-slider", {
+        slidesPerView: 3,
+        centeredSlides: true,
+        loop: true,
+        speed: 1000,
+        spaceBetween: 20,
+        autoplay: false,
+
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        // },
+        navigation: {
+          nextEl: "#swiper-slider-button-next",
+          prevEl: "#swiper-slider-button-prev",
+        },
+        grabCursor: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+
+          768: {
+            slidesPerView: 2,
+          },
+        },
+      });
+    </script>
+    <!-- hero slider js -->
+    <script>
+      const heroSlider = new Swiper(".hero-slider", {
+        slidesPerView: 1,
+        centeredSlides: true,
+        loop: true,
+        speed: 3200,
+
+        effect: "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: false,
+        },
+      });
+    </script>
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        mirror: false,
+        once: false,
+        offset: 120,
+        anchorPlacement: "top-bottom",
+        disableMutationObserver: false,
+      });
+    </script>
+    <!-- preloader js -->
+    <script>
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        preloader.classList.add("opacity-0");
+        setTimeout(() => {
+          preloader.classList.add("hidden");
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
