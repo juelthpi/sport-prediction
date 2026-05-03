@@ -1,32 +1,42 @@
 @import "tailwindcss";
-@import "assets/fonts/stylesheet.css";
+@import "../fonts/stylesheet.css";
+
 @layer base {
+
   /* Common headings */
   h1 {
-    @apply font-bold xl:text-6xl lg:text-5xl   text-4xl text-white;
+    @apply font-bold xl:text-6xl lg:text-5xl text-4xl text-white;
   }
+
   h2 {
-    @apply font-bold xl:text-5xl lg:text-4xl   text-3xl text-white;
+    @apply font-bold xl:text-5xl lg:text-4xl text-3xl text-white;
   }
+
   h3 {
-    @apply font-bold xl:text-4xl lg:text-3xl   text-2xl text-white;
+    @apply font-bold xl:text-4xl lg:text-3xl text-2xl text-white;
   }
+
   h4 {
-    @apply font-bold xl:text-3xl lg:text-2xl   text-xl text-white;
+    @apply font-bold xl:text-3xl lg:text-2xl text-xl text-white;
   }
+
   h5 {
-    @apply font-bold xl:text-2xl lg:text-xl   text-lg text-white;
+    @apply font-bold xl:text-2xl lg:text-xl text-lg text-white;
   }
+
   h6 {
-    @apply font-medium xl:text-xl lg:text-lg   text-[16px] text-white;
+    @apply font-medium xl:text-xl lg:text-lg text-[16px] text-white;
   }
+
   p {
     @apply font-normal lg:text-[16px] text-[15px] text-soft-gray/90 m-0;
   }
 }
+
 body {
   font-family: "Sofia Pro";
 }
+
 @theme {
   --color-brand: #2366ed;
   /* --color-brand: #ea57ff; */
@@ -39,6 +49,7 @@ body {
   --font-body: "Sofia Pro", sans-serif;
   --text-base: 15px;
 }
+
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -55,21 +66,27 @@ body {
   z-index: 30;
   position: relative;
 }
+
 .svg-white path {
   fill: white;
 }
+
 .svg-brand path {
   fill: var(--color-brand);
 }
+
 .svg-stroke-blue path {
   stroke: var(--color-light-blue);
 }
+
 .svg-secondary path {
   fill: var(--color-secondary);
 }
+
 .svg-stroke-white path {
   stroke: white;
 }
+
 .svg-stroke-brand path {
   stroke: var(--color-brand);
 }
@@ -77,12 +94,10 @@ body {
 @utility primary-btn {
   @apply px-5 md:px-6 py-2 md:py-2.5 rounded-3xl text-white font-medium flex gap-2 justify-center items-center transition-all duration-500 ease-in-out;
 
-  background: linear-gradient(
-    to right,
-    var(--color-brand),
-    var(--color-secondary),
-    var(--color-brand)
-  );
+  background: linear-gradient(to right,
+      var(--color-brand),
+      var(--color-secondary),
+      var(--color-brand));
 
   background-size: 200% 100%;
   background-position: left center;
@@ -95,57 +110,66 @@ body {
 @utility secondary-btn {
   @apply px-5 md:px-6 py-2 md:py-2.5 rounded-3xl text-white font-medium flex gap-2 justify-center items-center bg-black/50;
 }
+
 @utility text-gradient {
   @apply bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent;
 }
+
 .filter-btn {
-  @apply px-5 py-2 rounded-full font-medium text-sm text-gray-100 uppercase  cursor-pointer
-         bg-white/5 backdrop-blur-md border border-white/10
-         transition-all duration-300 flex items-center gap-2.5 opacity-70;
+  @apply px-5 py-2 rounded-full font-medium text-sm text-gray-100 uppercase cursor-pointer bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 flex items-center gap-2.5 opacity-70;
 }
+
 .filter-btn:hover {
   @apply bg-[#26293D] text-white;
 }
+
 .section-gap {
   @apply pb-10 md:pb-18 pt-10 md:pt-18;
 }
+
 .inner-gap {
   @apply mt-15 md:mt-20;
 }
+
 .filter-btn.active {
-  @apply from-brand to-secondary bg-linear-to-r text-white  shadow-indigo-500/30 opacity-100;
+  @apply from-brand to-secondary bg-linear-to-r text-white shadow-indigo-500/30 opacity-100;
 }
+
 .filter-hide {
   @apply opacity-0 scale-95 pointer-events-none absolute;
 }
+
 .filter-show {
   @apply opacity-100 scale-100 relative;
 }
 
 .bg-gradient {
-  background: linear-gradient(
-    to right,
-    var(--color-brand),
-    var(--color-secondary)
-  );
+  background: linear-gradient(to right,
+      var(--color-brand),
+      var(--color-secondary));
 }
+
 .shadow-1 {
-  box-shadow: 4px 8px 30px 0px
-    color-mix(in srgb, var(--color-secondary) 50%, transparent);
+  box-shadow: 4px 8px 30px 0px color-mix(in srgb, var(--color-secondary) 50%, transparent);
 }
+
 .hover-shadow-1:hover {
   box-shadow: 0px 12px 40px 0px var(--color-brand);
 }
+
 .hover-shadow-2:hover {
   box-shadow: rgba(149, 157, 165, 0.13) 0px 4px 8px;
 }
+
 /* start light on off */
 @keyframes twinkle {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 0.6;
   }
+
   50% {
     transform: scale(1.4);
     opacity: 1;
@@ -155,30 +179,32 @@ body {
 .twinkle {
   animation: twinkle 1.5s ease-in-out infinite;
 }
+
 .twinkle-slow {
   animation: twinkle 3s ease-in-out infinite;
 }
+
 .twinkle-fast {
   animation: twinkle 1.6s ease-in-out infinite;
 }
+
 .plan-shape {
   display: none;
 }
+
 .plan-card.active {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-brand) 40%, transparent),
-    color-mix(in srgb, var(--color-secondary) 50%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-brand) 40%, transparent),
+      color-mix(in srgb, var(--color-secondary) 50%, transparent));
   border: 1px solid var(--color-secondary);
 }
+
 .plan-card.active .plan-header {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-brand) 2%, transparent),
-    color-mix(in srgb, var(--color-secondary) 10%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-brand) 2%, transparent),
+      color-mix(in srgb, var(--color-secondary) 10%, transparent));
 }
+
 .plan-card.active .plan-shape {
   display: block;
 }
@@ -187,23 +213,25 @@ body {
   border-left: 3px solid transparent;
   cursor: pointer;
 }
+
 .tab-button.active-tab {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-brand) 20%, transparent),
-    color-mix(in srgb, var(--color-secondary) 5%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-brand) 20%, transparent),
+      color-mix(in srgb, var(--color-secondary) 5%, transparent));
   border-left: 3px solid var(--color-brand);
 }
+
 nav a.active {
   color: color-mix(in srgb, var(--color-brand) 100%, transparent);
 }
+
 /* roadmap */
 .timeline {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
+
 .timeline .timeline-item {
   width: 43%;
   position: relative;
@@ -214,6 +242,7 @@ nav a.active {
   border-radius: 12px;
   padding: 25px;
 }
+
 .timeline .timeline-item:after {
   content: "";
   position: absolute;
@@ -226,15 +255,19 @@ nav a.active {
   backdrop-filter: blur(100px);
   border: 1px solid #7e5edf4f;
 }
+
 .timeline .timeline-item:nth-child(odd):after {
   right: -6%;
 }
+
 .timeline .timeline-item:nth-child(even):after {
   left: -6%;
 }
+
 .timeline .timeline-item:nth-child(even) .rec {
   left: 0%;
 }
+
 .rec {
   position: absolute;
   height: 15px;
@@ -246,6 +279,7 @@ nav a.active {
   backdrop-filter: blur(100px);
   z-index: 1;
 }
+
 .dot-cover {
   position: absolute;
   height: 26px;
@@ -258,6 +292,7 @@ nav a.active {
   justify-content: center;
   background: linear-gradient(129.03deg, #2d70f7 6.95%, #7f5edf 96.35%);
 }
+
 .dot-cover .dot {
   display: inline-block;
   height: 18px;
@@ -265,9 +300,11 @@ nav a.active {
   border-radius: 50%;
   background: black;
 }
+
 .timeline .timeline-item:nth-child(odd) .dot-cover {
   right: -20%;
 }
+
 .timeline .timeline-item:nth-child(even) .dot-cover {
   left: -19%;
 }
@@ -275,16 +312,20 @@ nav a.active {
 .timeline .timeline-item:nth-child(even) {
   align-self: flex-end;
 }
+
 .timeline .timeline-item:nth-child(even):before {
   left: -69px;
 }
+
 .timeline .timeline-item:nth-child(odd) {
   align-self: flex-start;
 }
+
 .timeline .timeline-item:nth-child(odd):before {
   align-self: flex-start;
   right: -71px;
 }
+
 .timeline .timeline-item:nth-child(odd) {
   text-align: right;
 }
@@ -294,6 +335,7 @@ nav a.active {
   width: 95%;
   margin: 0 auto;
 }
+
 .timeline {
   position: relative;
 }
@@ -306,13 +348,12 @@ nav a.active {
   bottom: 0;
   width: 3px;
 
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
-    color-mix(in srgb, var(--color-brand) 100%, transparent) 50%,
-    color-mix(in srgb, var(--color-secondary) 20%, transparent) 100%
-  );
+  background: linear-gradient(90deg,
+      color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand) 100%, transparent) 50%,
+      color-mix(in srgb, var(--color-secondary) 20%, transparent) 100%);
 }
+
 .toc-link {
   color: white;
   font-size: 18px;
@@ -324,55 +365,64 @@ nav a.active {
   margin-bottom: 8px;
   border-left: 2px solid transparent;
 }
+
 .toc-link.active,
 .toc-link:hover {
-  background: linear-gradient(
-    107.71deg,
-    rgba(35, 102, 237, 0.2) 25.11%,
-    rgba(117, 84, 213, 0.05) 74.18%
-  );
+  background: linear-gradient(107.71deg,
+      rgba(35, 102, 237, 0.2) 25.11%,
+      rgba(117, 84, 213, 0.05) 74.18%);
 
   border-left: 2px solid var(--color-secondary);
   color: white;
 }
+
 .right-content h1 {
   font-size: 34px;
   line-height: 42px;
 }
+
 .right-content h2 {
   font-size: 32px;
   line-height: 40px;
 }
+
 .right-content h3 {
   font-size: 28px;
   line-height: 38px;
 }
+
 .right-content h4 {
   font-size: 24px;
   line-height: 34px;
 }
+
 .right-content h5 {
   font-size: 20px;
   line-height: 30px;
 }
+
 .right-content ul,
 .right-content ol {
   list-style: inherit;
   margin-left: 30px;
 }
+
 .right-content ul li,
 .right-content ol li {
   color: white;
 }
+
 /* Start Tab css  */
 .animate-fade-in {
   animation: fadeIn 0.4s ease-out forwards;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
     transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -383,18 +433,22 @@ nav a.active {
 .transition-max-height {
   transition: max-height 0.5s ease-in-out;
 }
+
 .transition-max-height {
   transition: max-height 0.5s ease-in-out;
 }
+
 .icon-closed,
 .icon-open {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
 .icon-closed.active,
 .icon-open.active {
   opacity: 1;
   transform: scale(1);
 }
+
 .icon-closed,
 .icon-open {
   opacity: 0;
@@ -405,40 +459,50 @@ nav a.active {
   align-items: center;
   justify-content: center;
 }
+
 .icon-wrapper {
   position: relative;
   width: 28px;
   height: 28px;
 }
+
 .default-arrow {
   transition: transform 0.4s ease-in-out;
 }
+
 .accordion-header {
   cursor: pointer;
 }
+
 .accordion-header[aria-expanded="true"] {
   @apply bg-brand/10;
 }
+
 /* end accordion css */
 /* start modal css */
 .modal-backdrop {
   transition: opacity 0.3s ease-in-out;
 }
+
 .modal-content {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .modal-content.scale {
   transform: scale(0.9);
   opacity: 0;
 }
+
 .modal-content.scale.show {
   transform: scale(1);
   opacity: 1;
 }
+
 .modal-content.slide-top {
   transform: translateY(-50px);
   opacity: 0;
 }
+
 .modal-content.slide-top.show {
   transform: translateY(0);
   opacity: 1;
@@ -447,13 +511,16 @@ nav a.active {
 .modal-content.fade {
   opacity: 0;
 }
+
 .modal-content.fade.show {
   opacity: 1;
 }
+
 .modal-close-btn:hover {
   background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
 }
+
 /* opt code ccs */
 .otp-box input {
   height: 45px;
@@ -465,9 +532,11 @@ nav a.active {
   text-align: center;
   font-size: 15px;
 }
+
 .otp-box input:focus {
   background: color-mix(in srgb, var(--color-brand) 20%, transparent);
 }
+
 /* hero slider */
 .hero-slider-area {
   position: absolute;
@@ -477,23 +546,23 @@ nav a.active {
   width: 50%;
   margin-top: 40px;
 }
+
 .color-effect {
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(
-    270.14deg,
-    rgba(2, 6, 24, 0.98) 0.1%,
-    rgba(37, 0, 77, 0.78) 47.26%,
-    rgba(2, 6, 24, 0.98) 99.12%
-  );
+  background: linear-gradient(270.14deg,
+      rgba(2, 6, 24, 0.98) 0.1%,
+      rgba(37, 0, 77, 0.78) 47.26%,
+      rgba(2, 6, 24, 0.98) 99.12%);
 }
 
 @media all and (max-width: 768px) {
   .timeline .timeline-item:nth-child(odd) .dot-cover {
     right: -22%;
   }
+
   .timeline .timeline-item:nth-child(even) .dot-cover {
     left: -21%;
   }
@@ -504,26 +573,32 @@ nav a.active {
   .dot-cover {
     display: none;
   }
+
   .timeline .timeline-item {
     margin-top: 0;
     width: 100%;
   }
+
   .right-content h1 {
     font-size: 30px;
     line-height: 42px;
   }
+
   .right-content h2 {
     font-size: 28px;
     line-height: 40px;
   }
+
   .right-content h3 {
     font-size: 24px;
     line-height: 38px;
   }
+
   .right-content h4 {
     font-size: 22px;
     line-height: 34px;
   }
+
   .right-content h5 {
     font-size: 18px;
     line-height: 30px;
