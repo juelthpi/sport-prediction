@@ -1,6 +1,29 @@
 @import "tailwindcss";
 @import "../fonts/stylesheet.css";
 
+:root {
+
+  --accent: #f97316;
+  --soft-gray: #e0e0e0;
+  --soft-red: #f16769;
+  --light-blue: #7ca0f3;
+}
+
+@theme {
+  --color-brand: var(--brand);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-soft-gray: var(--soft-gray);
+  --color-soft-red: var(--soft-red);
+  --color-light-blue: var(--light-blue);
+  --font-body: var(--font);
+  --text-base: var(--text-base);
+}
+
+html {
+  font-size: var(--text-base);
+}
+
 @layer base {
 
   /* Common headings */
@@ -25,34 +48,17 @@
   }
 
   h6 {
-    @apply font-medium xl:text-xl lg:text-lg text-[16px] text-white;
+    @apply font-medium xl:text-xl lg:text-lg text-base text-white;
   }
 
   p {
-    @apply font-normal lg:text-[16px] text-[15px] text-soft-gray/90 m-0;
+    @apply font-normal text-base text-soft-gray/90 m-0;
   }
 }
 
-body {
-  font-family: "Sofia Pro";
-}
-
-@theme {
-  --color-brand: #2366ed;
-  /* --color-brand: #ea57ff; */
-  --color-secondary: #7554d5;
-  /* --color-secondary: #feca57; */
-  --color-accent: #f97316;
-  --color-soft-gray: #e0e0e0;
-  --color-soft-red: #f16769;
-  --color-light-blue: #7ca0f3;
-  --font-body: "Sofia Pro", sans-serif;
-  --text-base: 15px;
-}
 
 body {
   font-family: var(--font-body);
-  font-size: var(--text-base);
   line-height: 1.6;
   background-color: #020618;
   overflow-x: hidden;
