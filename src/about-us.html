@@ -1,917 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>prediction</title>
-    <!-- Aos animation -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- swiper slider CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
-    <!-- Preloader -->
-    <div
-      id="preloader"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md"
-    >
-      <div class="text-center">
-        <!-- Glowing Spinner -->
-        <div class="relative w-22 h-22 mx-auto mb-6">
-          <!-- Outer Pulse Ring -->
-          <div
-            class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"
-          ></div>
-          <!-- Main Spinning Ring -->
-          <div
-            class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin"
-          ></div>
-          <!-- Inner Glow -->
-          <div
-            class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse"
-          ></div>
-          <!-- Center Core -->
-          <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
 
-        <!-- Text with Dot Animation -->
-        <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
-        <div class="flex justify-center space-x-2">
-          <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
-          <div
-            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"
-          ></div>
-          <div
-            class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"
-          ></div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>prediction</title>
+  <!-- Aos animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- swiper slider CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Downloaded fonts -->
+  <link rel="stylesheet" href="assets/fonts/stylesheet.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    :root {
+      --brand: #2366ed;
+      --secondary: #7554d5;
+      --text-base: 15px;
+      --font: "Sofia Pro", sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-secondary/10 to-black overflow-hidden backdrop-blur-md">
+    <div class="text-center">
+      <!-- Glowing Spinner -->
+      <div class="relative w-22 h-22 mx-auto mb-6">
+        <!-- Outer Pulse Ring -->
+        <div class="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl animate-ping"></div>
+        <!-- Main Spinning Ring -->
+        <div
+          class="absolute inset-0 rounded-full border-8 border-transparent border-t-brand/50 border-l-brand/40 animate-spin">
         </div>
-        <p class="text-gray-400 text-sm mt-4">
-          Analyzing matches & generating winning tips...
+        <!-- Inner Glow -->
+        <div
+          class="absolute inset-4 rounded-full bg-gradient-to-br from-brand/60 to-secondary/10 blur-xl animate-pulse">
+        </div>
+        <!-- Center Core -->
+        <div class="absolute inset-8 rounded-full bg-brand shadow-2xl"></div>
+      </div>
+
+      <!-- Text with Dot Animation -->
+      <h2 class="text-xl font-bold text-white mb-3">Loading Predictions</h2>
+      <div class="flex justify-center space-x-2">
+        <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce"></div>
+        <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-150"></div>
+        <div class="w-3 h-3 bg-brand/50 rounded-full animate-bounce delay-300"></div>
+      </div>
+      <p class="text-gray-400 text-sm mt-4">
+        Analyzing matches & generating winning tips...
+      </p>
+    </div>
+  </div>
+  <!-- Header -->
+  <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
+    <div class="container">
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-brand"><img src="assets/images/logo.png" alt="logo"
+            class="max-w-50" /></a>
+        <button id="open-menu" class="lg:hidden text-gray-700">
+          <!-- Hamburger icon -->
+          <svg class="w-9 h-9 bg-brand rounded-full p-1.5" fill="none" stroke="white" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <nav class="hidden lg:flex space-x-4 lg:space-x-8">
+          <a href="index.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Home</a>
+          <a href="about-us.html" class="active text-soft-gray hover:text-brand duration-500 ease-in-out">About</a>
+          <a href="live-prediction.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Live
+            Predictions</a>
+          <a href="pricing.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Pricing</a>
+          <a href="blog.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Blog</a>
+        </nav>
+        <div class="hidden lg:flex items-center gap-2.5">
+          <a href="login.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Login</a>
+          <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Overlay -->
+  <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
+  <!-- Off‑canvas menu -->
+  <aside id="canvas-menu"
+    class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl">
+    <div class="p-4 px-2 flex justify-between items-center border-b border-brand/50">
+      <a href="index.html" class="text-2xl font-bold text-brand"><img src="assets/images/logo.png" alt="logo"
+          class="max-w-40" /></a>
+      <button id="close-menu" class="text-white">✕</button>
+    </div>
+    <nav class="flex flex-col p-4 space-y-3">
+      <a href="index.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Home</a>
+      <a href="about-us.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">About</a>
+      <a href="live-prediction.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Live
+        Predictions</a>
+      <a href="pricing.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Pricing</a>
+      <a href="blog.html" class="text-soft-gray hover:text-brand duration-500 ease-in-out">Blog</a>
+      <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
+    </nav>
+  </aside>
+  <!-- Page Info Section Start -->
+  <section class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18">
+    <div class="container">
+      <div class="max-w-150 mx-auto text-center space-y-3" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="leading-tight">
+          Built on Analysis
+          <span class="text-gradient">Trusted by Sports Fans</span>
+        </h2>
+        <p class="text-[18px]">
+          A platform designed to deliver smart, structured sports predictions
+          through research, experience, and technology.
         </p>
       </div>
     </div>
-    <!-- Header -->
-    <header class="py-4 bg-[#09092933] backdrop-blur-md z-40 sticky top-0">
-      <div class="container">
-        <div class="flex justify-between items-center">
-          <a href="index.html" class="text-2xl font-bold text-brand"
-            ><img src="assets/images/logo.png" alt="logo" class="max-w-50"
-          /></a>
-          <button id="open-menu" class="lg:hidden text-gray-700">
-            <!-- Hamburger icon -->
-            <svg
-              class="w-9 h-9 bg-brand rounded-full p-1.5"
-              fill="none"
-              stroke="white"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-          <nav class="hidden lg:flex space-x-4 lg:space-x-8">
-            <a
-              href="index.html"
-              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >Home</a
-            >
-            <a
-              href="about-us.html"
-              class="active text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >About</a
-            >
-            <a
-              href="live-prediction.html"
-              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >Live Predictions</a
-            >
-            <a
-              href="pricing.html"
-              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >Pricing</a
-            >
-            <a
-              href="blog.html"
-              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >Blog</a
-            >
-          </nav>
-          <div class="hidden lg:flex items-center gap-2.5">
-            <a
-              href="login.html"
-              class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-              >Login</a
-            >
-            <a href="sign-up.html" class="primary-btn"> Register a Account </a>
+    <!-- effect -->
+    <div class="color-effect"></div>
+    <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
+      <img src="assets/images/page-info-bg/info-thumbnail-3.jpg" alt="image" class="w-full h-full object-cover" />
+    </div>
+  </section>
+  <!-- Page Info Section End -->
+  <!-- Mission Vision Start -->
+  <section class="section-gap relative">
+    <div class="container space-y-6">
+      <div
+        class="border border-[#1F2334] rounded-2xl py-5 px-5 lg:py-10 lg:px-12 relative after:content-[''] after:absolute after:top-5 after:right-2 after:bg-secondary/70 after:w-25 after:h-25 after:blur-3xl overflow-hidden">
+        <div class="grid grid-cols-12 lg:gap-x-20 items-center space-y-10">
+          <div class="col-span-full lg:col-span-8">
+            <!-- common heading -->
+            <div class="space-y-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="inline-block">
+                <div
+                  class="flex items-center gap-2 border border-secondary/20 rounded-3xl py-1.5 px-3 bg-secondary/10 backdrop-blur-xs">
+                  <img src="assets/images/icons/mission.png" alt="" class="w-5 h-5" />
+                  <span class="text-[#7CA0F3] font-medium">Our Mission</span>
+                </div>
+              </div>
+              <h3>
+                Uncovering the
+                <span class="text-gradient">True Signal</span>
+              </h3>
+              <p>
+                We exist to replace hype with structure. Our mission is to
+                democratize access to professional-grade sports insights,
+                empowering you with data-driven clarity for every decision you
+                make.
+              </p>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-4 lg:col-start-0 lg:col-span-4 sm:col-start-5" data-aos="zoom-in"
+            data-aos-duration="800" data-aos-delay="300">
+            <img src="assets/images/thumbnails/mission.png" alt="img" class="w-full" />
           </div>
         </div>
-      </div>
-    </header>
-    <!-- Overlay -->
-    <div id="overlay" class="fixed inset-0 bg-brand/1 hidden z-40"></div>
-    <!-- Off‑canvas menu -->
-    <aside
-      id="canvas-menu"
-      class="fixed top-0 z-50 left-0 w-64 h-full bg-brand/10 shadow-lg transform -translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-xl"
-    >
-      <div
-        class="p-4 px-2 flex justify-between items-center border-b border-brand/50"
-      >
-        <a href="index.html" class="text-2xl font-bold text-brand"
-          ><img src="assets/images/logo.png" alt="logo" class="max-w-40"
-        /></a>
-        <button id="close-menu" class="text-white">✕</button>
-      </div>
-      <nav class="flex flex-col p-4 space-y-3">
-        <a
-          href="index.html"
-          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-          >Home</a
-        >
-        <a
-          href="about-us.html"
-          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-          >About</a
-        >
-        <a
-          href="live-prediction.html"
-          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-          >Live Predictions</a
-        >
-        <a
-          href="pricing.html"
-          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-          >Pricing</a
-        >
-        <a
-          href="blog.html"
-          class="text-soft-gray hover:text-brand duration-500 ease-in-out"
-          >Blog</a
-        >
-        <a href="sign-up.html" class="primary-btn w-full mt-6">Sign Up</a>
-      </nav>
-    </aside>
-    <!-- Page Info Section Start -->
-    <section
-      class="relative pt-35 pb-20 md:pt-40 md:pb-25 lg:pt-50 lg:pb-30 -mt-18"
-    >
-      <div class="container">
+        <!-- shape img -->
+        <div class="absolute top-0 right-0 -z-10">
+          <img src="assets/images/shape/line-shape.png" alt="img" />
+        </div>
         <div
-          class="max-w-150 mx-auto text-center space-y-3"
-          data-aos="fade-up"
-          data-aos-duration="800"
-        >
-          <h2 class="leading-tight">
-            Built on Analysis
-            <span class="text-gradient">Trusted by Sports Fans</span>
-          </h2>
-          <p class="text-[18px]">
-            A platform designed to deliver smart, structured sports predictions
-            through research, experience, and technology.
-          </p>
+          class="max-w-60 max-h-60 h-full w-full blur-[160px] rounded-full opacity-60 bottom-0 left-10 absolute from-brand to-brand bg-linear-to-r -z-10">
         </div>
       </div>
-      <!-- effect -->
-      <div class="color-effect"></div>
-      <div class="absolute top-0 -z-10 h-full w-full opacity-70 md:opacity-100">
-        <img
-          src="assets/images/page-info-bg/info-thumbnail-3.jpg"
-          alt="image"
-          class="w-full h-full object-cover"
-        />
-      </div>
-    </section>
-    <!-- Page Info Section End -->
-    <!-- Mission Vision Start -->
-    <section class="section-gap relative">
-      <div class="container space-y-6">
-        <div
-          class="border border-[#1F2334] rounded-2xl py-5 px-5 lg:py-10 lg:px-12 relative after:content-[''] after:absolute after:top-5 after:right-2 after:bg-secondary/70 after:w-25 after:h-25 after:blur-3xl overflow-hidden"
-        >
-          <div class="grid grid-cols-12 lg:gap-x-20 items-center space-y-10">
-            <div class="col-span-full lg:col-span-8">
-              <!-- common heading -->
-              <div class="space-y-4" data-aos="fade-up" data-aos-duration="800">
-                <div class="inline-block">
-                  <div
-                    class="flex items-center gap-2 border border-secondary/20 rounded-3xl py-1.5 px-3 bg-secondary/10 backdrop-blur-xs"
-                  >
-                    <img
-                      src="assets/images/icons/mission.png"
-                      alt=""
-                      class="w-5 h-5"
-                    />
-                    <span class="text-[#7CA0F3] font-medium">Our Mission</span>
-                  </div>
+      <div
+        class="border border-[#1F2334] rounded-2xl py-5 px-5 lg:py-10 lg:px-12 relative after:content-[''] after:absolute after:top-5 after:left-2 after:bg-secondary/70 after:w-25 after:h-25 after:blur-3xl overflow-hidden">
+        <div class="grid grid-cols-12 lg:gap-x-20 items-center space-y-10">
+          <div class="col-span-full lg:col-span-8 order-2">
+            <!-- common heading -->
+            <div class="space-y-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="inline-block">
+                <div
+                  class="flex items-center gap-2 border border-secondary/20 rounded-3xl py-1.5 px-3 bg-secondary/10 backdrop-blur-xs">
+                  <img src="assets/images/icons/mission.png" alt="" class="w-5 h-5" />
+                  <span class="text-[#7CA0F3] font-medium">Our Vision</span>
                 </div>
-                <h3>
-                  Uncovering the
-                  <span class="text-gradient">True Signal</span>
-                </h3>
+              </div>
+              <h3>
+                The Future of
+                <span class="text-gradient">Sports Intelligence</span>
+              </h3>
+              <p>
+                Envisioning a world where data meets intuition. We are
+                building the definitive global ecosystem that combines expert
+                analytical rigor with scalable, user-centric technology.
+              </p>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-4 lg:col-start-0 lg:col-span-4 sm:col-start-5 order-1"
+            data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+            <img src="assets/images/thumbnails/vision.png" alt="img" class="w-full" />
+          </div>
+        </div>
+        <!-- shape img -->
+        <div class="absolute left-0 bottom-0 -z-10">
+          <img src="assets/images/shape/line-shape-left.png" alt="img" />
+        </div>
+        <div
+          class="max-w-60 max-h-60 h-full w-full blur-[160px] rounded-full opacity-60 bottom-0 left-10 absolute from-brand to-brand bg-linear-to-r -z-10">
+        </div>
+      </div>
+    </div>
+    <!-- dot shape -->
+    <div class="max-w-100 max-h-85 h-full w-full bottom-0 left-0 absolute">
+      <img src="assets/images/shape/dots-shape.png" alt="shape" class="w-full" />
+    </div>
+    <div class="max-w-100 max-h-85 h-full w-full top-1/2 right-0 absolute">
+      <img src="assets/images/shape/dots-shape.png" alt="shape" class="w-full" />
+    </div>
+    <!-- circle shape -->
+    <div
+      class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 left-0 absolute from-brand to-secondary bg-linear-to-r">
+    </div>
+    <div
+      class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-1/2 right-0 absolute from-brand to-secondary bg-linear-to-r">
+    </div>
+  </section>
+  <!-- Mission Vision End -->
+  <section class="section-gap relative">
+    <div class="container">
+      <!-- common heading -->
+      <div class="max-w-150 mx-auto text-center space-y-2" data-aos="fade-up" data-aos-duration="800">
+        <h3>Our Journey So Far</h3>
+        <p>From humble beginnings to a scalable SaaS solution.</p>
+      </div>
+      <div class="mt-15 md:mt-40">
+        <div class="journey-inner-container">
+          <div class="timeline gap-1 mt-5">
+            <!-- item -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+              <div class="timeline-content mt-4 space-y-3">
+                <h6>The Beginning</h6>
+                <span class="text-gradient inline-block">2025</span>
                 <p>
-                  We exist to replace hype with structure. Our mission is to
-                  democratize access to professional-grade sports insights,
-                  empowering you with data-driven clarity for every decision you
-                  make.
+                  Started as private messaging groups sharing manual analysis.
+                  The foundation of our "quality over quantity" philosophy was
+                  built here.
                 </p>
               </div>
+              <div class="dot-cover">
+                <span class="dot"></span>
+              </div>
+              <span class="rec"></span>
             </div>
-            <div
-              class="col-span-full sm:col-span-4 lg:col-start-0 lg:col-span-4 sm:col-start-5"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="300"
-            >
-              <img
-                src="assets/images/thumbnails/mission.png"
-                alt="img"
-                class="w-full"
-              />
-            </div>
-          </div>
-          <!-- shape img -->
-          <div class="absolute top-0 right-0 -z-10">
-            <img src="assets/images/shape/line-shape.png" alt="img" />
-          </div>
-          <div
-            class="max-w-60 max-h-60 h-full w-full blur-[160px] rounded-full opacity-60 bottom-0 left-10 absolute from-brand to-brand bg-linear-to-r -z-10"
-          ></div>
-        </div>
-        <div
-          class="border border-[#1F2334] rounded-2xl py-5 px-5 lg:py-10 lg:px-12 relative after:content-[''] after:absolute after:top-5 after:left-2 after:bg-secondary/70 after:w-25 after:h-25 after:blur-3xl overflow-hidden"
-        >
-          <div class="grid grid-cols-12 lg:gap-x-20 items-center space-y-10">
-            <div class="col-span-full lg:col-span-8 order-2">
-              <!-- common heading -->
-              <div class="space-y-4" data-aos="fade-up" data-aos-duration="800">
-                <div class="inline-block">
-                  <div
-                    class="flex items-center gap-2 border border-secondary/20 rounded-3xl py-1.5 px-3 bg-secondary/10 backdrop-blur-xs"
-                  >
-                    <img
-                      src="assets/images/icons/mission.png"
-                      alt=""
-                      class="w-5 h-5"
-                    />
-                    <span class="text-[#7CA0F3] font-medium">Our Vision</span>
-                  </div>
-                </div>
-                <h3>
-                  The Future of
-                  <span class="text-gradient">Sports Intelligence</span>
-                </h3>
+            <!-- item -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+              <div class="timeline-content mt-4 space-y-3">
+                <h6>Growing Demand</h6>
+                <span class="text-gradient inline-block">2026</span>
                 <p>
-                  Envisioning a world where data meets intuition. We are
-                  building the definitive global ecosystem that combines expert
-                  analytical rigor with scalable, user-centric technology.
+                  As demand grew, automation became essential. We introduced
+                  structured Telegram delivery to ensure predictions are
+                  shared instantly, consistently.
                 </p>
               </div>
+              <div class="dot-cover">
+                <span class="dot"></span>
+              </div>
+              <span class="rec"></span>
             </div>
-            <div
-              class="col-span-full sm:col-span-4 lg:col-start-0 lg:col-span-4 sm:col-start-5 order-1"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="500"
-            >
-              <img
-                src="assets/images/thumbnails/vision.png"
-                alt="img"
-                class="w-full"
-              />
+            <!-- item -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600">
+              <div class="timeline-content mt-4 space-y-3">
+                <h6>Platform Launch</h6>
+                <span class="text-gradient inline-block">2026</span>
+                <p>
+                  We launched SportsSignal as a transparent SaaS platform,
+                  marking a key step in making structured sports analysis
+                  accessible to a wider audience.
+                </p>
+              </div>
+              <div class="dot-cover">
+                <span class="dot"></span>
+              </div>
+              <span class="rec"></span>
             </div>
-          </div>
-          <!-- shape img -->
-          <div class="absolute left-0 bottom-0 -z-10">
-            <img src="assets/images/shape/line-shape-left.png" alt="img" />
-          </div>
-          <div
-            class="max-w-60 max-h-60 h-full w-full blur-[160px] rounded-full opacity-60 bottom-0 left-10 absolute from-brand to-brand bg-linear-to-r -z-10"
-          ></div>
-        </div>
-      </div>
-      <!-- dot shape -->
-      <div class="max-w-100 max-h-85 h-full w-full bottom-0 left-0 absolute">
-        <img
-          src="assets/images/shape/dots-shape.png"
-          alt="shape"
-          class="w-full"
-        />
-      </div>
-      <div class="max-w-100 max-h-85 h-full w-full top-1/2 right-0 absolute">
-        <img
-          src="assets/images/shape/dots-shape.png"
-          alt="shape"
-          class="w-full"
-        />
-      </div>
-      <!-- circle shape -->
-      <div
-        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 left-0 absolute from-brand to-secondary bg-linear-to-r"
-      ></div>
-      <div
-        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-1/2 right-0 absolute from-brand to-secondary bg-linear-to-r"
-      ></div>
-    </section>
-    <!-- Mission Vision End -->
-    <section class="section-gap relative">
-      <div class="container">
-        <!-- common heading -->
-        <div
-          class="max-w-150 mx-auto text-center space-y-2"
-          data-aos="fade-up"
-          data-aos-duration="800"
-        >
-          <h3>Our Journey So Far</h3>
-          <p>From humble beginnings to a scalable SaaS solution.</p>
-        </div>
-        <div class="mt-15 md:mt-40">
-          <div class="journey-inner-container">
-            <div class="timeline gap-1 mt-5">
-              <!-- item -->
-              <div
-                class="timeline-item"
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="200"
-              >
-                <div class="timeline-content mt-4 space-y-3">
-                  <h6>The Beginning</h6>
-                  <span class="text-gradient inline-block">2025</span>
-                  <p>
-                    Started as private messaging groups sharing manual analysis.
-                    The foundation of our "quality over quantity" philosophy was
-                    built here.
-                  </p>
-                </div>
-                <div class="dot-cover">
-                  <span class="dot"></span>
-                </div>
-                <span class="rec"></span>
+            <!-- item -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-duration="500" data-aos-delay="800">
+              <div class="timeline-content mt-4 space-y-3">
+                <h6>AI & Integration</h6>
+                <span class="text-gradient inline-block">Future</span>
+                <p>
+                  We continue enhancing our analytical engine with AI-driven
+                  insights and broader API integrations to support deeper,
+                  smarter analysis.
+                </p>
               </div>
-              <!-- item -->
-              <div
-                class="timeline-item"
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="400"
-              >
-                <div class="timeline-content mt-4 space-y-3">
-                  <h6>Growing Demand</h6>
-                  <span class="text-gradient inline-block">2026</span>
-                  <p>
-                    As demand grew, automation became essential. We introduced
-                    structured Telegram delivery to ensure predictions are
-                    shared instantly, consistently.
-                  </p>
-                </div>
-                <div class="dot-cover">
-                  <span class="dot"></span>
-                </div>
-                <span class="rec"></span>
+              <div class="dot-cover">
+                <span class="dot"></span>
               </div>
-              <!-- item -->
-              <div
-                class="timeline-item"
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="600"
-              >
-                <div class="timeline-content mt-4 space-y-3">
-                  <h6>Platform Launch</h6>
-                  <span class="text-gradient inline-block">2026</span>
-                  <p>
-                    We launched SportsSignal as a transparent SaaS platform,
-                    marking a key step in making structured sports analysis
-                    accessible to a wider audience.
-                  </p>
-                </div>
-                <div class="dot-cover">
-                  <span class="dot"></span>
-                </div>
-                <span class="rec"></span>
-              </div>
-              <!-- item -->
-              <div
-                class="timeline-item"
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="800"
-              >
-                <div class="timeline-content mt-4 space-y-3">
-                  <h6>AI & Integration</h6>
-                  <span class="text-gradient inline-block">Future</span>
-                  <p>
-                    We continue enhancing our analytical engine with AI-driven
-                    insights and broader API integrations to support deeper,
-                    smarter analysis.
-                  </p>
-                </div>
-                <div class="dot-cover">
-                  <span class="dot"></span>
-                </div>
-                <span class="rec"></span>
-              </div>
+              <span class="rec"></span>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- dot shape -->
-      <div class="max-w-100 max-h-85 h-full w-full top-40 left-0 absolute">
-        <img
-          src="assets/images/shape/dots-shape.png"
-          alt="shape"
-          class="w-full"
-        />
-      </div>
-      <div class="max-w-100 max-h-85 h-full w-full top-80 right-0 absolute">
-        <img
-          src="assets/images/shape/dots-shape.png"
-          alt="shape"
-          class="w-full"
-        />
-      </div>
-      <!-- circle shape -->
-      <div
-        class="max-w-85 max-h-85 h-full w-full blur-[200px] opacity-40 top-45 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
-      ></div>
-      <div
-        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-70 left-10 absolute from-secondary to-secondary bg-linear-to-r"
-      ></div>
+    <!-- dot shape -->
+    <div class="max-w-100 max-h-85 h-full w-full top-40 left-0 absolute">
+      <img src="assets/images/shape/dots-shape.png" alt="shape" class="w-full" />
+    </div>
+    <div class="max-w-100 max-h-85 h-full w-full top-80 right-0 absolute">
+      <img src="assets/images/shape/dots-shape.png" alt="shape" class="w-full" />
+    </div>
+    <!-- circle shape -->
+    <div
+      class="max-w-85 max-h-85 h-full w-full blur-[200px] opacity-40 top-45 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10">
+    </div>
+    <div
+      class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 top-70 left-10 absolute from-secondary to-secondary bg-linear-to-r">
+    </div>
 
+    <div
+      class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 right-10 absolute from-secondary to-secondary bg-linear-to-r">
+    </div>
+  </section>
+  <!-- Why Trust Start -->
+  <section class="relative section-gap">
+    <div class="container">
+      <!-- common heading -->
+      <div class="max-w-150 mx-auto text-center space-y-2" data-aos="fade-up" data-aos-duration="800">
+        <h3>
+          What We
+          <span class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent">Stand For</span>
+        </h3>
+        <p>
+          Trusted by users for accuracy, clarity, and predictions delivered
+          exactly when they matter.
+        </p>
+      </div>
       <div
-        class="max-w-75 max-h-75 h-full w-full blur-[160px] opacity-50 bottom-0 right-10 absolute from-secondary to-secondary bg-linear-to-r"
-      ></div>
-    </section>
-    <!-- Why Trust Start -->
-    <section class="relative section-gap">
-      <div class="container">
-        <!-- common heading -->
-        <div
-          class="max-w-150 mx-auto text-center space-y-2"
-          data-aos="fade-up"
-          data-aos-duration="800"
-        >
-          <h3>
-            What We
-            <span
-              class="bg-linear-to-r from-brand to-secondary bg-clip-text text-transparent"
-              >Stand For</span
-            >
-          </h3>
-          <p>
-            Trusted by users for accuracy, clarity, and predictions delivered
-            exactly when they matter.
-          </p>
-        </div>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 border border-[#1F2334] bg-[#121627CC] p-5 rounded-2xl relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-secondary/70 after:w-16 after:h-16 after:blur-2xl overflow-hidden inner-gap"
-        >
-          <!-- item -->
-          <div class="space-y-3.5">
-            <div>
-              <img
-                src="assets/images/icons/check-circle.png"
-                alt="icon"
-                class="max-w-12 w-full mx-auto"
-              />
-            </div>
-            <div class="text-center">
-              <h6>Accuracy Over Hype</h6>
-              <p class="text-sm text-[#7CA0F3] mt-3">
-                We prioritize data-backed probability over sensationalist
-                promises.
-              </p>
-            </div>
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 border border-[#1F2334] bg-[#121627CC] p-5 rounded-2xl relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-secondary/70 after:w-16 after:h-16 after:blur-2xl overflow-hidden inner-gap">
+        <!-- item -->
+        <div class="space-y-3.5">
+          <div>
+            <img src="assets/images/icons/check-circle.png" alt="icon" class="max-w-12 w-full mx-auto" />
           </div>
-          <!-- item -->
-          <div class="space-y-3.5">
-            <div>
-              <img
-                src="assets/images/icons/transparency.png"
-                alt="icon"
-                class="max-w-12 w-full mx-auto"
-              />
-            </div>
-            <div class="text-center">
-              <h6>Transparency</h6>
-              <p class="text-sm text-[#7CA0F3] mt-3">
-                Clear records and honest reporting. No hidden losses.
-              </p>
-            </div>
-          </div>
-          <!-- item -->
-          <div class="space-y-3.5">
-            <div>
-              <img
-                src="assets/images/icons/tdesign_secured.png"
-                alt="icon"
-                class="max-w-12 w-full mx-auto"
-              />
-            </div>
-            <div class="text-center">
-              <h6>User Trust</h6>
-              <p class="text-sm text-[#7CA0F3] mt-3">
-                Building long-term relationships through reliability and
-                security.
-              </p>
-            </div>
-          </div>
-          <!-- item -->
-          <div class="space-y-3.5">
-            <div>
-              <img
-                src="assets/images/icons/exchange.png"
-                alt="icon"
-                class="max-w-12 w-full mx-auto"
-              />
-            </div>
-            <div class="text-center">
-              <h6>Consistency</h6>
-              <p class="text-sm text-[#7CA0F3] mt-3">
-                Delivering structured insights day in, day out.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-12 gap-5 mt-8">
-          <div
-            class="text-center md:text-start col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5"
-          >
-            <div
-              class="mx-auto md:mx-0 h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2"
-            >
-              <img src="assets/images/icons/expertise.png" alt="img" />
-            </div>
-            <h5>Expertise</h5>
-            <p>
-              Our platform is powered by experienced sports analysts who believe
-              success is built through discipline, not luck. By combining
-              historical data, player performance metrics, and market insight,
-              we deliver structured analysis with long-term consistency.
+          <div class="text-center">
+            <h6>Accuracy Over Hype</h6>
+            <p class="text-sm text-[#7CA0F3] mt-3">
+              We prioritize data-backed probability over sensationalist
+              promises.
             </p>
           </div>
-          <div
-            class="col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5 text-center md:text-start"
-          >
+        </div>
+        <!-- item -->
+        <div class="space-y-3.5">
+          <div>
+            <img src="assets/images/icons/transparency.png" alt="icon" class="max-w-12 w-full mx-auto" />
+          </div>
+          <div class="text-center">
+            <h6>Transparency</h6>
+            <p class="text-sm text-[#7CA0F3] mt-3">
+              Clear records and honest reporting. No hidden losses.
+            </p>
+          </div>
+        </div>
+        <!-- item -->
+        <div class="space-y-3.5">
+          <div>
+            <img src="assets/images/icons/tdesign_secured.png" alt="icon" class="max-w-12 w-full mx-auto" />
+          </div>
+          <div class="text-center">
+            <h6>User Trust</h6>
+            <p class="text-sm text-[#7CA0F3] mt-3">
+              Building long-term relationships through reliability and
+              security.
+            </p>
+          </div>
+        </div>
+        <!-- item -->
+        <div class="space-y-3.5">
+          <div>
+            <img src="assets/images/icons/exchange.png" alt="icon" class="max-w-12 w-full mx-auto" />
+          </div>
+          <div class="text-center">
+            <h6>Consistency</h6>
+            <p class="text-sm text-[#7CA0F3] mt-3">
+              Delivering structured insights day in, day out.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-5 mt-8">
+        <div
+          class="text-center md:text-start col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5">
+          <div class="mx-auto md:mx-0 h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2">
+            <img src="assets/images/icons/expertise.png" alt="img" />
+          </div>
+          <h5>Expertise</h5>
+          <p>
+            Our platform is powered by experienced sports analysts who believe
+            success is built through discipline, not luck. By combining
+            historical data, player performance metrics, and market insight,
+            we deliver structured analysis with long-term consistency.
+          </p>
+        </div>
+        <div
+          class="col-span-full md:col-span-6 border border-[#292b34] p-6 rounded-2xl space-y-5 text-center md:text-start">
+          <div class="mx-auto md:mx-0 h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2">
+            <img src="assets/images/icons/commitment.png" alt="img" />
+          </div>
+          <h5>Our Commitment</h5>
+          <p>
+            User privacy and system integrity guide every decision we make. We
+            continuously refine and improve the platform to keep it secure,
+            transparent, and user-friendly, always placing trust and fairness
+            at the center of the experience.
+          </p>
+        </div>
+        <div class="col-span-full border border-[#292b34] p-6 rounded-2xl space-y-5">
+          <div class="md:flex gap-4 space-y-5 text-center md:text-start">
             <div
-              class="mx-auto md:mx-0 h-20 w-20 rounded-full bg-gradient flex items-center justify-center p-2"
-            >
+              class="mx-auto md:mx-0 min-h-20 w-20 h-20 min-w-20 rounded-full bg-gradient flex items-center justify-center p-2">
               <img src="assets/images/icons/commitment.png" alt="img" />
             </div>
-            <h5>Our Commitment</h5>
-            <p>
-              User privacy and system integrity guide every decision we make. We
-              continuously refine and improve the platform to keep it secure,
-              transparent, and user-friendly, always placing trust and fairness
-              at the center of the experience.
-            </p>
-          </div>
-          <div
-            class="col-span-full border border-[#292b34] p-6 rounded-2xl space-y-5"
-          >
-            <div class="md:flex gap-4 space-y-5 text-center md:text-start">
-              <div
-                class="mx-auto md:mx-0 min-h-20 w-20 h-20 min-w-20 rounded-full bg-gradient flex items-center justify-center p-2"
-              >
-                <img src="assets/images/icons/commitment.png" alt="img" />
-              </div>
-              <div class="space-y-5">
-                <h5>What’s Next</h5>
-                <p>
-                  As the platform evolves, we are expanding sports coverage and
-                  strengthening our analytics engine. Smarter tools and deeper
-                  customization are coming, while keeping everything focused,
-                  simple, and aligned with what matters most: the signal.
-                </p>
-              </div>
+            <div class="space-y-5">
+              <h5>What’s Next</h5>
+              <p>
+                As the platform evolves, we are expanding sports coverage and
+                strengthening our analytics engine. Smarter tools and deeper
+                customization are coming, while keeping everything focused,
+                simple, and aligned with what matters most: the signal.
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-0 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
-      ></div>
-    </section>
-    <!-- Why Trust End -->
-    <!-- Cta Start -->
-    <section class="pt-10 md:pt-15 -mb-30">
-      <div class="container">
-        <div
-          class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10"
-        >
-          <div
-            class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6"
-          >
-            <div class="max-w-140">
-              <h3 class="md:text-start text-center">
-                Start getting smart sports predictions today
-              </h3>
-            </div>
-            <div class="inline-block">
-              <a href="#" class="primary-btn"
-                >Create a free account
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  class="svg-stroke-white group-hover:-rotate-60 duration-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 10H15.8337"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                  <path
-                    d="M10 4.16663L15.8333 9.99996L10 15.8333"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path></svg
-              ></a>
-            </div>
+    </div>
+    <div
+      class="max-w-85 max-h-85 h-full w-full blur-[160px] opacity-40 top-0 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10">
+    </div>
+  </section>
+  <!-- Why Trust End -->
+  <!-- Cta Start -->
+  <section class="pt-10 md:pt-15 -mb-30">
+    <div class="container">
+      <div class="px-5 py-10 md:px-10 md:py-20 rounded-md relative overflow-hidden z-10">
+        <div class="relative z-10 flex justify-center items-center md:justify-between flex-wrap gap-6">
+          <div class="max-w-140">
+            <h3 class="md:text-start text-center">
+              Start getting smart sports predictions today
+            </h3>
           </div>
-          <div class="absolute top-0 left-0 h-full w-full">
-            <img
-              src="assets/images/bg/bg-1.jpg"
-              alt="img"
-              class="w-full h-full"
-            />
+          <div class="inline-block">
+            <a href="#" class="primary-btn">Create a free account
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                class="svg-stroke-white group-hover:-rotate-60 duration-600" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 10H15.8337" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M10 4.16663L15.8333 9.99996L10 15.8333" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg></a>
           </div>
+        </div>
+        <div class="absolute top-0 left-0 h-full w-full">
+          <img src="assets/images/bg/bg-1.jpg" alt="img" class="w-full h-full" />
         </div>
       </div>
-    </section>
-    <!-- Cta End -->
-    <!-- Footer Start -->
-    <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
-      <div class="container relative z-10">
-        <div class="max-w-135 mx-auto text-center">
-          <a href="index.html"
-            ><img
-              src="assets/images/logo.png"
-              class="max-w-50 mx-auto"
-              alt="logo"
-          /></a>
-          <p class="mt-3">
-            Precision Analytics for Sports Enthusiasts. Connect with top
-            predictors for real-time insights.
-          </p>
-        </div>
-        <div class="text-center mt-8 md:mt-12">
-          <div
-            class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto"
-          >
-            <ul class="flex items-center gap-x-6 justify-center flex-wrap">
-              <li>
-                <a
-                  href="#"
-                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
-                  >Home</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
-                  >About us</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
-                  >Predictions</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
-                  >How it works</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="font-medium text-white duration-700 py-2 inline-block hover:text-brand"
-                  >Pricing</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+    </div>
+  </section>
+  <!-- Cta End -->
+  <!-- Footer Start -->
+  <section class="pt-35 pb-6 md:pb-10 md:pt-50 bg-brand/8 relative">
+    <div class="container relative z-10">
+      <div class="max-w-135 mx-auto text-center">
+        <a href="index.html"><img src="assets/images/logo.png" class="max-w-50 mx-auto" alt="logo" /></a>
+        <p class="mt-3">
+          Precision Analytics for Sports Enthusiasts. Connect with top
+          predictors for real-time insights.
+        </p>
+      </div>
+      <div class="text-center mt-8 md:mt-12">
+        <div class="border border-white/10 bg-white/5 rounded-3xl px-6 inline-block mx-auto">
+          <ul class="flex items-center gap-x-6 justify-center flex-wrap">
             <li>
-              <a
-                href="#"
-                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
-              >
-                <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
-              </a>
+              <a href="#" class="font-medium text-white duration-700 py-2 inline-block hover:text-brand">Home</a>
             </li>
             <li>
-              <a
-                href="#"
-                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
-              >
-                <img
-                  src="assets/images/icons/social-icon/twitter.png"
-                  alt="icon"
-                />
-              </a>
+              <a href="#" class="font-medium text-white duration-700 py-2 inline-block hover:text-brand">About us</a>
             </li>
             <li>
-              <a
-                href="#"
-                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
-              >
-                <img
-                  src="assets/images/icons/social-icon/telegram.png"
-                  alt="icon"
-                />
-              </a>
+              <a href="#" class="font-medium text-white duration-700 py-2 inline-block hover:text-brand">Predictions</a>
             </li>
             <li>
-              <a
-                href="#"
-                class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50"
-              >
-                <img
-                  src="assets/images/icons/social-icon/linkedin.png"
-                  alt="icon"
-                />
-              </a>
+              <a href="#" class="font-medium text-white duration-700 py-2 inline-block hover:text-brand">How it
+                works</a>
+            </li>
+            <li>
+              <a href="#" class="font-medium text-white duration-700 py-2 inline-block hover:text-brand">Pricing</a>
             </li>
           </ul>
         </div>
-        <div
-          class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6"
-        >
-          <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
-          <ul
-            class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start"
-          >
-            <li>
-              <a
-                href="#"
-                class="text-white duration-700 hover:text-brand font-medium"
-                >Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-white duration-700 hover:text-brand font-medium"
-                >Terms of Service</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-white duration-700 hover:text-brand font-medium"
-                >Refund Policy</a
-              >
-            </li>
-          </ul>
-        </div>
-        <!-- disclaimer -->
-        <div
-          class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]"
-        >
-          <p class="text-sm text-soft-gray/50">
-            <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
-            are provided for informational purposes only. Outcomes are never
-            guaranteed, and past performance does not guarantee future results.
-          </p>
-        </div>
       </div>
-      <div class="h-full w-full top-0 left-0 absolute -z-10">
-        <img
-          src="assets/images/shape/dots-shape.png"
-          alt="shape"
-          class="w-full h-full"
-        />
+      <div>
+        <ul class="flex items-center gap-3 justify-center mt-7.5 flex-wrap">
+          <li>
+            <a href="#"
+              class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50">
+              <img src="assets/images/icons/social-icon/fb.png" alt="icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50">
+              <img src="assets/images/icons/social-icon/twitter.png" alt="icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50">
+              <img src="assets/images/icons/social-icon/telegram.png" alt="icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="flex items-center justify-center p-2 min-h-10 min-w-10 max-h-10 max-w-10 rounded-md border border-white/17 hover:bg-linear-to-r from-brand to-secondary duration-700 hover:border-white/50">
+              <img src="assets/images/icons/social-icon/linkedin.png" alt="icon" />
+            </a>
+          </li>
+        </ul>
       </div>
       <div
-        class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10"
-      ></div>
-      <div
-        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
-      ></div>
-      <div
-        class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10"
-      ></div>
-    </section>
-    <script>
-      const openBtn = document.getElementById("open-menu");
-      const closeBtn = document.getElementById("close-menu");
-      const canvasMenu = document.getElementById("canvas-menu");
-      const overlay = document.getElementById("overlay");
-      openBtn.addEventListener("click", () => {
-        canvasMenu.classList.remove("-translate-x-full");
-        overlay.classList.remove("hidden");
-      });
-      closeBtn.addEventListener("click", () => {
-        canvasMenu.classList.add("-translate-x-full");
-        overlay.classList.add("hidden");
-      });
+        class="flex flex-wrap text-center gap-2 md:text-start items-center justify-center md:justify-between border-t border-white/10 mt-12 pt-6">
+        <p>Copyright @ 2025 All Right Reserved PredictZon.</p>
+        <ul class="flex flex-wrap items-center gap-x-3 justify-center md:justify-start">
+          <li>
+            <a href="#" class="text-white duration-700 hover:text-brand font-medium">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#" class="text-white duration-700 hover:text-brand font-medium">Terms of Service</a>
+          </li>
+          <li>
+            <a href="#" class="text-white duration-700 hover:text-brand font-medium">Refund Policy</a>
+          </li>
+        </ul>
+      </div>
+      <!-- disclaimer -->
+      <div class="border border-brand/30 py-2 px-4 rounded-md mt-8 border-l-[#D5549F]">
+        <p class="text-sm text-soft-gray/50">
+          <b class="text-soft-gray/80">Risk Disclaimer:</b> Sports predictions
+          are provided for informational purposes only. Outcomes are never
+          guaranteed, and past performance does not guarantee future results.
+        </p>
+      </div>
+    </div>
+    <div class="h-full w-full top-0 left-0 absolute -z-10">
+      <img src="assets/images/shape/dots-shape.png" alt="shape" class="w-full h-full" />
+    </div>
+    <div
+      class="max-w-85 max-h-85 h-full w-full blur-[160px] rounded-full opacity-60 top-20 right-0 left-0 mx-auto absolute from-secondary to-secondary bg-linear-to-r -z-10">
+    </div>
+    <div
+      class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-20 bottom-20 right-0 absolute from-secondary to-secondary bg-linear-to-r -z-10">
+    </div>
+    <div
+      class="max-w-85 max-h-85 h-full w-full blur-[100px] rounded-full opacity-30 top-0 left-0 absolute from-secondary to-secondary bg-linear-to-r -z-10">
+    </div>
+  </section>
+  <script>
+    const openBtn = document.getElementById("open-menu");
+    const closeBtn = document.getElementById("close-menu");
+    const canvasMenu = document.getElementById("canvas-menu");
+    const overlay = document.getElementById("overlay");
+    openBtn.addEventListener("click", () => {
+      canvasMenu.classList.remove("-translate-x-full");
+      overlay.classList.remove("hidden");
+    });
+    closeBtn.addEventListener("click", () => {
+      canvasMenu.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+    });
 
-      overlay.addEventListener("click", () => {
-        canvasMenu.classList.add("-translate-x-full");
-        overlay.classList.add("hidden");
+    overlay.addEventListener("click", () => {
+      canvasMenu.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+    });
+  </script>
+  <!-- filter js -->
+  <script>
+    document.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("filter-btn")) return;
+      const btn = e.target;
+      const container = btn.closest(".filter-container");
+      const filterButtons = container.querySelectorAll(".filter-btn");
+      const filterItems = container.querySelectorAll(".filter-item");
+      // active button
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      filterItems.forEach((item) => {
+        const categories = item.dataset.category.split(" ");
+        if (filter === "all" || categories.includes(filter)) {
+          item.classList.remove("filter-hide");
+          item.classList.add("filter-show");
+        } else {
+          item.classList.add("filter-hide");
+          item.classList.remove("filter-show");
+        }
       });
-    </script>
-    <!-- filter js -->
-    <script>
-      document.addEventListener("click", (e) => {
-        if (!e.target.classList.contains("filter-btn")) return;
-        const btn = e.target;
-        const container = btn.closest(".filter-container");
-        const filterButtons = container.querySelectorAll(".filter-btn");
-        const filterItems = container.querySelectorAll(".filter-item");
-        // active button
-        filterButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const filter = btn.dataset.filter;
-        filterItems.forEach((item) => {
-          const categories = item.dataset.category.split(" ");
-          if (filter === "all" || categories.includes(filter)) {
-            item.classList.remove("filter-hide");
-            item.classList.add("filter-show");
-          } else {
-            item.classList.add("filter-hide");
-            item.classList.remove("filter-show");
-          }
-        });
-      });
-    </script>
-    <!-- Swiper slider JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- user review slider js -->
-    <script>
-      const userReviewSlider = new Swiper(".user-review-slider", {
-        slidesPerView: 3,
-        centeredSlides: true,
-        loop: true,
-        speed: 1000,
-        spaceBetween: 20,
-        autoplay: false,
+    });
+  </script>
+  <!-- Swiper slider JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- user review slider js -->
+  <script>
+    const userReviewSlider = new Swiper(".user-review-slider", {
+      slidesPerView: 3,
+      centeredSlides: true,
+      loop: true,
+      speed: 1000,
+      spaceBetween: 20,
+      autoplay: false,
 
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        // },
-        navigation: {
-          nextEl: "#swiper-slider-button-next",
-          prevEl: "#swiper-slider-button-prev",
+      // autoplay: {
+      //   delay: 2000,
+      //   disableOnInteraction: false,
+      // },
+      navigation: {
+        nextEl: "#swiper-slider-button-next",
+        prevEl: "#swiper-slider-button-prev",
+      },
+      grabCursor: true,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
         },
-        grabCursor: true,
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
 
-          768: {
-            slidesPerView: 2,
-          },
+        768: {
+          slidesPerView: 2,
         },
-      });
-    </script>
-    <!-- Aos -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 1000,
-        easing: "ease-in-out",
-        mirror: true,
-        once: false,
-        offset: 100,
-        anchorPlacement: "top-bottom",
-        disableMutationObserver: false,
-      });
-    </script>
-    <!-- preloader js -->
-    <script>
-      window.addEventListener("load", () => {
-        const preloader = document.getElementById("preloader");
-        preloader.classList.add("opacity-0");
-        setTimeout(() => {
-          preloader.classList.add("hidden");
-        }, 800);
-      });
-    </script>
-  </body>
+      },
+    });
+  </script>
+  <!-- Aos -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      mirror: true,
+      once: false,
+      offset: 100,
+      anchorPlacement: "top-bottom",
+      disableMutationObserver: false,
+    });
+  </script>
+  <!-- preloader js -->
+  <script>
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      preloader.classList.add("opacity-0");
+      setTimeout(() => {
+        preloader.classList.add("hidden");
+      }, 800);
+    });
+  </script>
+</body>
+
 </html>
